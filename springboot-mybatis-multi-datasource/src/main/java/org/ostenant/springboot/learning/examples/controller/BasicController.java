@@ -8,13 +8,13 @@ import java.util.List;
  */
 public interface BasicController<E, I extends Serializable> {
 
-    public int deleteById(I id);
+    int deleteById(I id);
 
-    public int save(E entity);
+    int save(E entity);
 
-    public List<E> findAll();
+    List<E> findAll();
 
-    public E findById(I id);
+    E findById(I id);
 
-    public int update(E record);
+    int update(E record);
 }

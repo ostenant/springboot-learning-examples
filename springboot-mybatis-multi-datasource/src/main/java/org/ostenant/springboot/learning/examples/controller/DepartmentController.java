@@ -19,27 +19,27 @@ public class DepartmentController implements BasicController<Department, String>
     @Autowired
     private DepartmentService departmentService;
 
-    @RequestMapping(value = "/department/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/department/{id}", method = RequestMethod.DELETE)
     public int deleteById(@PathVariable("id") String id) {
         return departmentService.deleteById(id);
     }
 
-    @RequestMapping(value = "/department", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/department", method = RequestMethod.POST)
     public int save(Department department) {
         return departmentService.save(department);
     }
 
-    @RequestMapping(value = "/departments", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/departments", method = RequestMethod.GET)
     public List<Department> findAll() {
         return departmentService.findAll();
     }
 
-    @RequestMapping(value = "/department/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/department/{id}", method = RequestMethod.GET)
     public Department findById(@PathVariable("id") String id) {
         return departmentService.findById(id);
     }
 
-    @RequestMapping(value = "/department", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/department", method = RequestMethod.PUT)
     public int update(Department department) {
         return departmentService.update(department);
     }

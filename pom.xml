@@ -10,6 +10,7 @@
 
     <modules>
         <module>springboot-helloworld</module>
+        <module>springboot-properties</module>
         <module>springboot-mybatis-generator</module>
         <module>springboot-mybatis-xml</module>
         <module>springboot-mybatis-annotation</module>

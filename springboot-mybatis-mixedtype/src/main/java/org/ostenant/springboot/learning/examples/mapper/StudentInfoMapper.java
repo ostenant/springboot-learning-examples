@@ -3,9 +3,12 @@ package org.ostenant.springboot.learning.examples.mapper;
 import org.apache.ibatis.annotations.*;
 import org.ostenant.springboot.learning.examples.model.StudentInfo;
 import org.ostenant.springboot.learning.examples.model.StudentInfoExample;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
+@Mapper
 public interface StudentInfoMapper {
 
     long countByExample(StudentInfoExample example);
