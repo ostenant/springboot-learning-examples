@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseExample implements Serializable{
+public class CourseExample implements Serializable {
 
     protected String orderByClause;
 

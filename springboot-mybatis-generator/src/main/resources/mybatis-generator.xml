@@ -20,17 +20,17 @@
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
         <!-- 生成equals()和hashCode()方法 -->
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
         <!-- 生成的所有实体类实现序列化接口 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 大小写不敏感 -->
-        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
         <!-- 对生成example代码进行重命名 -->
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-           <property name="searchString" value="Example$" />
-           <property name="replaceString" value="Criteria" />
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
         </plugin>
-        
+
         <!-- （非必需）用于创建class时，对注释进行控制 -->
         <commentGenerator>
             <!-- 去掉生成日期那行注释 -->

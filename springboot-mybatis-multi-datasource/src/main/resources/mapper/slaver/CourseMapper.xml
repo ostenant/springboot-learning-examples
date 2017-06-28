@@ -69,8 +69,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, name, description, lesson_period, total_course
-  </sql>
+        id, name, description, lesson_period, total_course
+    </sql>
     <select id="selectByExample" parameterType="org.ostenant.springboot.learning.examples.model.slaver.CourseExample"
             resultMap="BaseResultMap">
         select
