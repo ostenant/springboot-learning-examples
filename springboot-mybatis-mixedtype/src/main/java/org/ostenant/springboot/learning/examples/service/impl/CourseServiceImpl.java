@@ -20,17 +20,14 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseMapper courseMapper;
 
-    @Override
     public int deleteById(String id) {
         return courseMapper.deleteByPrimaryKey(id);
     }
 
-    @Override
     public int save(Course record) {
         return courseMapper.insertSelective(record);
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Course> findAll() {
         return courseMapper.selectByExample(new CourseExample());

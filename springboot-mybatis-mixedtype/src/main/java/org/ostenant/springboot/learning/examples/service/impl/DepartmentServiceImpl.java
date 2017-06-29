@@ -21,29 +21,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentMapper departmentMapper;
 
-    @Override
     public int deleteById(String id) {
         return departmentMapper.deleteByPrimaryKey(id);
     }
 
-    @Override
     public int save(Department record) {
         return departmentMapper.insertSelective(record);
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Department> findAll() {
         return departmentMapper.selectByExample(new DepartmentExample());
     }
 
-    @Override
     @Transactional(readOnly = true)
     public Department findById(String id) {
         return departmentMapper.selectByPrimaryKey(id);
     }
 
-    @Override
     public int update(Department record) {
         return departmentMapper.updateByPrimaryKeySelective(record);
     }
