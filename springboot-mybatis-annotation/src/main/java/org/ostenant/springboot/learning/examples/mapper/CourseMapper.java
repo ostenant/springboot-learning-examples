@@ -3,18 +3,11 @@ package org.ostenant.springboot.learning.examples.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.ostenant.springboot.learning.examples.model.Course;
-import org.ostenant.springboot.learning.examples.model.CourseExample;
 
 import java.util.List;
 
 @Mapper
 public interface CourseMapper {
-
-    @SelectProvider(type = CourseSqlProvider.class, method = "countByExample")
-    long countByExample(CourseExample example);
-
-    @DeleteProvider(type = CourseSqlProvider.class, method = "deleteByExample")
-    int deleteByExample(CourseExample example);
 
     @Delete({
             "delete from course",
@@ -35,16 +28,6 @@ public interface CourseMapper {
     @InsertProvider(type = CourseSqlProvider.class, method = "insertSelective")
     int insertSelective(Course record);
 
-    @SelectProvider(type = CourseSqlProvider.class, method = "selectByExample")
-    @Results({
-            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
-            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "lesson_period", property = "lessonPeriod", jdbcType = JdbcType.DOUBLE),
-            @Result(column = "total_course", property = "totalCourse", jdbcType = JdbcType.INTEGER)
-    })
-    List<Course> selectByExample(CourseExample example);
-
     @Select({
             "select",
             "id, name, description, lesson_period, total_course",
@@ -60,11 +43,6 @@ public interface CourseMapper {
     })
     Course selectByPrimaryKey(String id);
 
-    @UpdateProvider(type = CourseSqlProvider.class, method = "updateByExampleSelective")
-    int updateByExampleSelective(@Param("record") Course record, @Param("example") CourseExample example);
-
-    @UpdateProvider(type = CourseSqlProvider.class, method = "updateByExample")
-    int updateByExample(@Param("record") Course record, @Param("example") CourseExample example);
 
     @UpdateProvider(type = CourseSqlProvider.class, method = "updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Course record);
@@ -78,4 +56,18 @@ public interface CourseMapper {
             "where id = #{id,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(Course record);
+
+    @Select({
+            "select",
+            "id, name, description, lesson_period, total_course",
+            "from course"
+    })
+    @Results({
+            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "lesson_period", property = "lessonPeriod", jdbcType = JdbcType.DOUBLE),
+            @Result(column = "total_course", property = "totalCourse", jdbcType = JdbcType.INTEGER)
+    })
+    List<Course> selectAll();
 }

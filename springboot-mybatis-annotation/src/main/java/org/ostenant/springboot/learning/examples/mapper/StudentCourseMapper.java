@@ -3,7 +3,6 @@ package org.ostenant.springboot.learning.examples.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.ostenant.springboot.learning.examples.model.StudentCourse;
-import org.ostenant.springboot.learning.examples.model.StudentCourseExample;
 
 import java.util.List;
 
