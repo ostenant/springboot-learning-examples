@@ -1,5 +1,6 @@
 package org.ostenant.springboot.learning.examples.service.impl;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.ostenant.springboot.learning.examples.mapper.StudentMapper;
 import org.ostenant.springboot.learning.examples.model.Student;
 import org.ostenant.springboot.learning.examples.service.StudentService;
@@ -37,5 +38,13 @@ public class StudentServiceImpl implements StudentService {
 
     public int update(Student record) {
         return studentMapper.update(record);
+    }
+
+    public List<Student> saveBatch(List<Student> students) {
+        if (CollectionUtils.isNotEmpty(students)) {
+            studentMapper.saveBatch(students);
+            return students;
+        }
+        return null;
     }
 }

@@ -38,4 +38,10 @@ public class StudentController implements BaseController<Student, Integer> {
         return studentService.update(student);
     }
 
+    @RequestMapping(value = "/api/students", method = RequestMethod.POST)
+    public List<Student> saveBatch(@RequestBody List<Student> students) {
+        List<Student> studentList = studentService.saveBatch(students);
+        return studentList;
+    }
+
 }

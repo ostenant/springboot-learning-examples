@@ -17,7 +17,6 @@ public interface StudentMapper {
     })
     int deleteById(Integer id);
 
-
     @Insert({
             "insert into student (name, ",
             "grade, class_number, ",
@@ -64,4 +63,8 @@ public interface StudentMapper {
     @UpdateProvider(type = StudentSqlProvider.class, method = "update")
     int update(Student record);
 
+    @InsertProvider(type = StudentSqlProvider.class, method = "saveBatch")
+//    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int saveBatch(@Param("students") List<Student> students);
 }
