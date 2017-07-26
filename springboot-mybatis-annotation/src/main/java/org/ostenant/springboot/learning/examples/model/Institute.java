@@ -1,14 +1,19 @@
 package org.ostenant.springboot.learning.examples.model;
 
+
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Institute implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Integer id;
 
     private String name;
+
+    private List<Student> students = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -24,6 +29,13 @@ public class Institute implements Serializable {
         return this;
     }
 
+    public Institute withStudents(List<Student> students) {
+        if (CollectionUtils.isNotEmpty(students)) {
+            this.getStudents().addAll(students);
+        }
+        return this;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -34,6 +46,14 @@ public class Institute implements Serializable {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @Override
@@ -69,7 +89,6 @@ public class Institute implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

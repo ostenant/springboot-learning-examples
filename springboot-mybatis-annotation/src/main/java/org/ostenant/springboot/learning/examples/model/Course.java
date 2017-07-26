@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Course implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Integer id;
 
     private String name;
@@ -13,10 +11,6 @@ public class Course implements Serializable {
     private Double lessonPeriod;
 
     private Double score;
-
-    public Integer getId() {
-        return id;
-    }
 
     public Course withId(Integer id) {
         this.setId(id);
@@ -26,6 +20,20 @@ public class Course implements Serializable {
     public Course withName(String name) {
         this.setName(name);
         return this;
+    }
+
+    public Course withLessonPeriod(Double lessonPeriod) {
+        this.setLessonPeriod(lessonPeriod);
+        return this;
+    }
+
+    public Course withScore(Double score) {
+        this.setScore(score);
+        return this;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -44,22 +52,12 @@ public class Course implements Serializable {
         return lessonPeriod;
     }
 
-    public Course withLessonPeriod(Double lessonPeriod) {
-        this.setLessonPeriod(lessonPeriod);
-        return this;
-    }
-
     public void setLessonPeriod(Double lessonPeriod) {
         this.lessonPeriod = lessonPeriod;
     }
 
     public Double getScore() {
         return score;
-    }
-
-    public Course withScore(Double score) {
-        this.setScore(score);
-        return this;
     }
 
     public void setScore(Double score) {
@@ -79,9 +77,9 @@ public class Course implements Serializable {
         }
         Course other = (Course) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getLessonPeriod() == null ? other.getLessonPeriod() == null : this.getLessonPeriod().equals(other.getLessonPeriod()))
-            && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getLessonPeriod() == null ? other.getLessonPeriod() == null : this.getLessonPeriod().equals(other.getLessonPeriod()))
+                && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()));
     }
 
     @Override
@@ -105,7 +103,6 @@ public class Course implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", lessonPeriod=").append(lessonPeriod);
         sb.append(", score=").append(score);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

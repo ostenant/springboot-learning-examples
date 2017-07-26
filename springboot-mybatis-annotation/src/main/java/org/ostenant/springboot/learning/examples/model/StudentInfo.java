@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class StudentInfo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Integer id;
 
     private Integer age;
@@ -15,6 +13,8 @@ public class StudentInfo implements Serializable {
     private String email;
 
     private Integer studentId;
+
+    private Student student;
 
     public Integer getId() {
         return id;
@@ -27,6 +27,26 @@ public class StudentInfo implements Serializable {
 
     public StudentInfo withAge(Integer age) {
         this.setAge(age);
+        return this;
+    }
+
+    public StudentInfo withAddress(String address) {
+        this.setAddress(address);
+        return this;
+    }
+
+    public StudentInfo withEmail(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public StudentInfo withStudentId(Integer studentId) {
+        this.setStudentId(studentId);
+        return this;
+    }
+
+    public StudentInfo withStudent(Student student) {
+        this.setStudent(student);
         return this;
     }
 
@@ -46,22 +66,12 @@ public class StudentInfo implements Serializable {
         return address;
     }
 
-    public StudentInfo withAddress(String address) {
-        this.setAddress(address);
-        return this;
-    }
-
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
     }
 
     public String getEmail() {
         return email;
-    }
-
-    public StudentInfo withEmail(String email) {
-        this.setEmail(email);
-        return this;
     }
 
     public void setEmail(String email) {
@@ -72,13 +82,16 @@ public class StudentInfo implements Serializable {
         return studentId;
     }
 
-    public StudentInfo withStudentId(Integer studentId) {
-        this.setStudentId(studentId);
-        return this;
-    }
-
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
@@ -123,7 +136,6 @@ public class StudentInfo implements Serializable {
         sb.append(", address=").append(address);
         sb.append(", email=").append(email);
         sb.append(", studentId=").append(studentId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

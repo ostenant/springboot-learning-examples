@@ -1,10 +1,12 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Integer id;
 
@@ -16,9 +18,9 @@ public class Student implements Serializable {
 
     private Integer instituteId;
 
-    public Integer getId() {
-        return id;
-    }
+    private StudentInfo studentInfo;
+
+    private List<StudentCourse> studentCourses = new ArrayList<>();
 
     public Student withId(Integer id) {
         this.setId(id);
@@ -28,6 +30,37 @@ public class Student implements Serializable {
     public Student withName(String name) {
         this.setName(name);
         return this;
+    }
+
+    public Student withGrade(String grade) {
+        this.setGrade(grade);
+        return this;
+    }
+
+    public Student withInstituteId(Integer instituteId) {
+        this.setInstituteId(instituteId);
+        return this;
+    }
+
+    public Student withClassNumber(String classNumber) {
+        this.setClassNumber(classNumber);
+        return this;
+    }
+
+    public Student withStudentInfo(StudentInfo studentInfo) {
+        this.setStudentInfo(studentInfo);
+        return this;
+    }
+
+    public Student withStudentCourses(List<StudentCourse> studentCourses) {
+        if (CollectionUtils.isNotEmpty(studentCourses)) {
+            getStudentCourses().addAll(studentCourses);
+        }
+        return this;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -46,22 +79,12 @@ public class Student implements Serializable {
         return grade;
     }
 
-    public Student withGrade(String grade) {
-        this.setGrade(grade);
-        return this;
-    }
-
     public void setGrade(String grade) {
         this.grade = grade == null ? null : grade.trim();
     }
 
     public String getClassNumber() {
         return classNumber;
-    }
-
-    public Student withClassNumber(String classNumber) {
-        this.setClassNumber(classNumber);
-        return this;
     }
 
     public void setClassNumber(String classNumber) {
@@ -72,13 +95,24 @@ public class Student implements Serializable {
         return instituteId;
     }
 
-    public Student withInstituteId(Integer instituteId) {
-        this.setInstituteId(instituteId);
-        return this;
-    }
-
     public void setInstituteId(Integer instituteId) {
         this.instituteId = instituteId;
+    }
+
+    public StudentInfo getStudentInfo() {
+        return studentInfo;
+    }
+
+    public void setStudentInfo(StudentInfo studentInfo) {
+        this.studentInfo = studentInfo;
+    }
+
+    public List<StudentCourse> getStudentCourses() {
+        return studentCourses;
+    }
+
+    public void setStudentCourses(List<StudentCourse> studentCourses) {
+        this.studentCourses = studentCourses;
     }
 
     @Override
@@ -123,7 +157,6 @@ public class Student implements Serializable {
         sb.append(", grade=").append(grade);
         sb.append(", classNumber=").append(classNumber);
         sb.append(", instituteId=").append(instituteId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

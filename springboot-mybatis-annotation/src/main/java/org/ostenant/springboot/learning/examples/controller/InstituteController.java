@@ -3,10 +3,7 @@ package org.ostenant.springboot.learning.examples.controller;
 import org.ostenant.springboot.learning.examples.model.Institute;
 import org.ostenant.springboot.learning.examples.service.InstituteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class InstituteController implements BaseController<Institute, Integer> {
     }
 
     @RequestMapping(value = "/api/institute", method = RequestMethod.POST)
-    public int save(Institute institute) {
+    public int save(@RequestBody Institute institute) {
         return instituteService.save(institute);
     }
 
@@ -38,7 +35,7 @@ public class InstituteController implements BaseController<Institute, Integer> {
     }
 
     @RequestMapping(value = "/api/institute", method = RequestMethod.PUT)
-    public int update(Institute institute) {
+    public int update(@RequestBody Institute institute) {
         return instituteService.update(institute);
     }
 }

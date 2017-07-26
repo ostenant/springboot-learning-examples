@@ -1,10 +1,12 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentCourse implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Integer id;
 
@@ -13,6 +15,8 @@ public class StudentCourse implements Serializable {
     private Integer courseId;
 
     private Double score;
+
+    private List<Course> courses = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -25,6 +29,23 @@ public class StudentCourse implements Serializable {
 
     public StudentCourse withStudentId(Integer studentId) {
         this.setStudentId(studentId);
+        return this;
+    }
+
+    public StudentCourse withCourseId(Integer courseId) {
+        this.setCourseId(courseId);
+        return this;
+    }
+
+    public StudentCourse withScore(Double score) {
+        this.setScore(score);
+        return this;
+    }
+
+    public StudentCourse withStudentCourse(List<Course> courses) {
+        if (CollectionUtils.isNotEmpty(courses)) {
+            getCourses().addAll(courses);
+        }
         return this;
     }
 
@@ -44,11 +65,6 @@ public class StudentCourse implements Serializable {
         return courseId;
     }
 
-    public StudentCourse withCourseId(Integer courseId) {
-        this.setCourseId(courseId);
-        return this;
-    }
-
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
@@ -57,13 +73,16 @@ public class StudentCourse implements Serializable {
         return score;
     }
 
-    public StudentCourse withScore(Double score) {
-        this.setScore(score);
-        return this;
-    }
-
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
@@ -105,7 +124,6 @@ public class StudentCourse implements Serializable {
         sb.append(", studentId=").append(studentId);
         sb.append(", courseId=").append(courseId);
         sb.append(", score=").append(score);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

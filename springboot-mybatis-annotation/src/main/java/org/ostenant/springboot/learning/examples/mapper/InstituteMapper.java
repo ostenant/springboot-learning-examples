@@ -22,7 +22,7 @@ public interface InstituteMapper {
             "insert into institute (name)",
             "values (#{name,jdbcType=VARCHAR})"
     })
-    @SelectKey(statement = "select last_insert_id()", keyProperty = "institute.id", before = false, resultType = int.class)
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
     int save(Institute institute);
 
 

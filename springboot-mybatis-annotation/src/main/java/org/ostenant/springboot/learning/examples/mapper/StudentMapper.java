@@ -26,7 +26,7 @@ public interface StudentMapper {
             "#{grade,jdbcType=VARCHAR}, #{classNumber,jdbcType=VARCHAR}, ",
             "#{instituteId,jdbcType=INTEGER})"
     })
-    @SelectKey(statement = "select last_insert_id()", keyProperty = "student.id", before = false, resultType = int.class)
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
     int save(Student student);
 
 

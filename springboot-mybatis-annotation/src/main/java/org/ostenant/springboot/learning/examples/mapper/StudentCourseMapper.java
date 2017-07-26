@@ -22,7 +22,7 @@ public interface StudentCourseMapper {
             "values (#{studentId,jdbcType=INTEGER}, ",
             "#{courseId,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE})"
     })
-    @SelectKey(statement = "select last_insert_id()", keyProperty = "studentCourse.id", before = false, resultType = int.class)
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
     int save(StudentCourse studentCourse);
 
 
