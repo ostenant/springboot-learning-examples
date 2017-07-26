@@ -64,7 +64,7 @@ public interface StudentMapper {
     int update(Student record);
 
     @InsertProvider(type = StudentSqlProvider.class, method = "saveBatch")
-//    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "id", before = false, resultType = int.class)
+//    @Options(useGeneratedKeys = true, keyProperty = "id")
     int saveBatch(@Param("students") List<Student> students);
 }
