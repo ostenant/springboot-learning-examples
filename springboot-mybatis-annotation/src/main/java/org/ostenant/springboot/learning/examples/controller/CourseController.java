@@ -10,17 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by Madison on 2017/6/25.
- */
 @RestController
-public class CourseController implements BasicController<Course, String> {
+public class CourseController implements BaseController<Course, Integer> {
 
     @Autowired
     private CourseService courseService;
 
     @RequestMapping(value = "/api/course/{id}", method = RequestMethod.DELETE)
-    public int deleteById(@PathVariable("id") String id) {
+    public int deleteById(@PathVariable("id") Integer id) {
         return courseService.deleteById(id);
     }
 
@@ -35,7 +32,7 @@ public class CourseController implements BasicController<Course, String> {
     }
 
     @RequestMapping(value = "/api/course/{id}", method = RequestMethod.GET)
-    public Course findById(@PathVariable("id") String id) {
+    public Course findById(@PathVariable("id") Integer id) {
         return courseService.findById(id);
     }
 

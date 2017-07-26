@@ -1,63 +1,49 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.ostenant.springboot.learning.examples.model.StudentInfo;
-import org.ostenant.springboot.learning.examples.model.StudentInfoExample;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository
-@Mapper
 public interface StudentInfoMapper {
-
-    long countByExample(StudentInfoExample example);
-
-    int deleteByExample(StudentInfoExample example);
-
     @Delete({
-            "delete from student_info",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "delete from student_info",
+        "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into student_info (id, age, ",
-            "phone_number, gender, ",
-            "email, address)",
-            "values (#{id,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, ",
-            "#{phoneNumber,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, ",
-            "#{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})"
+        "insert into student_info (id, age, ",
+        "address, email, ",
+        "student_id)",
+        "values (#{id,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, ",
+        "#{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
+        "#{studentId,jdbcType=INTEGER})"
     })
     int insert(StudentInfo record);
 
     int insertSelective(StudentInfo record);
 
-    List<StudentInfo> selectByExample(StudentInfoExample example);
-
     @Select({
-            "select",
-            "id, age, phone_number, gender, email, address",
-            "from student_info",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "select",
+        "id, age, address, email, student_id",
+        "from student_info",
+        "where id = #{id,jdbcType=INTEGER}"
     })
-    @ResultMap("org.ostenant.springboot.learning.examples.master.mapper.StudentInfoMapper.BaseResultMap")
-    StudentInfo selectByPrimaryKey(String id);
-
-    int updateByExampleSelective(@Param("record") StudentInfo record, @Param("example") StudentInfoExample example);
-
-    int updateByExample(@Param("record") StudentInfo record, @Param("example") StudentInfoExample example);
+    @ResultMap("org.ostenant.springboot.learning.examples.mapper.StudentInfoMapper.BaseResultMap")
+    StudentInfo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(StudentInfo record);
 
     @Update({
-            "update student_info",
-            "set age = #{age,jdbcType=INTEGER},",
-            "phone_number = #{phoneNumber,jdbcType=VARCHAR},",
-            "gender = #{gender,jdbcType=BIT},",
-            "email = #{email,jdbcType=VARCHAR},",
-            "address = #{address,jdbcType=VARCHAR}",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "update student_info",
+        "set age = #{age,jdbcType=INTEGER},",
+          "address = #{address,jdbcType=VARCHAR},",
+          "email = #{email,jdbcType=VARCHAR},",
+          "student_id = #{studentId,jdbcType=INTEGER}",
+        "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(StudentInfo record);
 }

@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Madison on 2017/6/29.
- */
+
 @Service
 @Transactional
 public class StudentInfoServiceImpl implements StudentInfoService {
@@ -19,25 +17,25 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     @Autowired
     private StudentInfoMapper studentInfoMapper;
 
-    public int deleteById(String id) {
-        return studentInfoMapper.deleteByPrimaryKey(id);
+    public int deleteById(Integer id) {
+        return studentInfoMapper.deleteById(id);
     }
 
-    public int save(StudentInfo record) {
-        return studentInfoMapper.insertSelective(record);
+    public int save(StudentInfo studentInfo) {
+        return studentInfoMapper.save(studentInfo);
     }
 
     @Transactional(readOnly = true)
     public List<StudentInfo> findAll() {
-        return studentInfoMapper.selectAll();
+        return studentInfoMapper.findAll();
     }
 
     @Transactional(readOnly = true)
-    public StudentInfo findById(String id) {
-        return studentInfoMapper.selectByPrimaryKey(id);
+    public StudentInfo findById(Integer id) {
+        return studentInfoMapper.findById(id);
     }
 
-    public int update(StudentInfo record) {
-        return studentInfoMapper.updateByPrimaryKeySelective(record);
+    public int update(StudentInfo studentInfo) {
+        return studentInfoMapper.update(studentInfo);
     }
 }

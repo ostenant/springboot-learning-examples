@@ -4,22 +4,32 @@ import java.io.Serializable;
 
 public class Course implements Serializable {
 
-    private String id;
+    private static final long serialVersionUID = 1L;
+
+    private Integer id;
 
     private String name;
 
-    private String description;
-
     private Double lessonPeriod;
 
-    private Integer totalCourse;
+    private Double score;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public Course withId(Integer id) {
+        this.setId(id);
+        return this;
+    }
+
+    public Course withName(String name) {
+        this.setName(name);
+        return this;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,29 +40,73 @@ public class Course implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
     public Double getLessonPeriod() {
         return lessonPeriod;
+    }
+
+    public Course withLessonPeriod(Double lessonPeriod) {
+        this.setLessonPeriod(lessonPeriod);
+        return this;
     }
 
     public void setLessonPeriod(Double lessonPeriod) {
         this.lessonPeriod = lessonPeriod;
     }
 
-    public Integer getTotalCourse() {
-        return totalCourse;
+    public Double getScore() {
+        return score;
     }
 
-    public void setTotalCourse(Integer totalCourse) {
-        this.totalCourse = totalCourse;
+    public Course withScore(Double score) {
+        this.setScore(score);
+        return this;
     }
 
+    public void setScore(Double score) {
+        this.score = score;
+    }
 
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Course other = (Course) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getLessonPeriod() == null ? other.getLessonPeriod() == null : this.getLessonPeriod().equals(other.getLessonPeriod()))
+            && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getLessonPeriod() == null) ? 0 : getLessonPeriod().hashCode());
+        result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", lessonPeriod=").append(lessonPeriod);
+        sb.append(", score=").append(score);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }

@@ -4,24 +4,34 @@ import java.io.Serializable;
 
 public class StudentInfo implements Serializable {
 
-    private String id;
+    private static final long serialVersionUID = 1L;
+
+    private Integer id;
 
     private Integer age;
 
-    private String phoneNumber;
-
-    private Boolean gender;
+    private String address;
 
     private String email;
 
-    private String address;
+    private Integer studentId;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public StudentInfo withId(Integer id) {
+        this.setId(id);
+        return this;
+    }
+
+    public StudentInfo withAge(Integer age) {
+        this.setAge(age);
+        return this;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getAge() {
@@ -32,35 +42,89 @@ public class StudentInfo implements Serializable {
         this.age = age;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
+    public StudentInfo withAddress(String address) {
+        this.setAddress(address);
+        return this;
     }
 
-    public Boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(Boolean gender) {
-        this.gender = gender;
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public String getEmail() {
         return email;
     }
 
+    public StudentInfo withEmail(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public StudentInfo withStudentId(Integer studentId) {
+        this.setStudentId(studentId);
+        return this;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        StudentInfo other = (StudentInfo) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()))
+            && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
+            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
+            && (this.getStudentId() == null ? other.getStudentId() == null : this.getStudentId().equals(other.getStudentId()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getAge() == null) ? 0 : getAge().hashCode());
+        result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
+        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
+        result = prime * result + ((getStudentId() == null) ? 0 : getStudentId().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", age=").append(age);
+        sb.append(", address=").append(address);
+        sb.append(", email=").append(email);
+        sb.append(", studentId=").append(studentId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

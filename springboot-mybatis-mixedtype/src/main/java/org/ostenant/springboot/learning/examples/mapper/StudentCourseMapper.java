@@ -1,62 +1,46 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.ostenant.springboot.learning.examples.model.StudentCourse;
-import org.ostenant.springboot.learning.examples.model.StudentCourseExample;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository
-@Mapper
 public interface StudentCourseMapper {
-
-    long countByExample(StudentCourseExample example);
-
-    int deleteByExample(StudentCourseExample example);
-
     @Delete({
-            "delete from student_course",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "delete from student_course",
+        "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     @Insert({
-            "insert into student_course (id, status, ",
-            "score, course_id, ",
-            "student_id)",
-            "values (#{id,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, ",
-            "#{score,jdbcType=DOUBLE}, #{courseId,jdbcType=VARCHAR}, ",
-            "#{studentId,jdbcType=VARCHAR})"
+        "insert into student_course (id, student_id, ",
+        "course_id, score)",
+        "values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, ",
+        "#{courseId,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE})"
     })
     int insert(StudentCourse record);
 
     int insertSelective(StudentCourse record);
 
-    List<StudentCourse> selectByExample(StudentCourseExample example);
-
     @Select({
-            "select",
-            "id, status, score, course_id, student_id",
-            "from student_course",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "select",
+        "id, student_id, course_id, score",
+        "from student_course",
+        "where id = #{id,jdbcType=INTEGER}"
     })
-    @ResultMap("org.ostenant.springboot.learning.examples.master.mapper.StudentCourseMapper.BaseResultMap")
-    StudentCourse selectByPrimaryKey(String id);
-
-    int updateByExampleSelective(@Param("record") StudentCourse record, @Param("example") StudentCourseExample example);
-
-    int updateByExample(@Param("record") StudentCourse record, @Param("example") StudentCourseExample example);
+    @ResultMap("org.ostenant.springboot.learning.examples.mapper.StudentCourseMapper.BaseResultMap")
+    StudentCourse selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(StudentCourse record);
 
     @Update({
-            "update student_course",
-            "set status = #{status,jdbcType=INTEGER},",
-            "score = #{score,jdbcType=DOUBLE},",
-            "course_id = #{courseId,jdbcType=VARCHAR},",
-            "student_id = #{studentId,jdbcType=VARCHAR}",
-            "where id = #{id,jdbcType=VARCHAR}"
+        "update student_course",
+        "set student_id = #{studentId,jdbcType=INTEGER},",
+          "course_id = #{courseId,jdbcType=INTEGER},",
+          "score = #{score,jdbcType=DOUBLE}",
+        "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(StudentCourse record);
 }

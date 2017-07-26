@@ -3,71 +3,54 @@ package org.ostenant.springboot.learning.examples.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.ostenant.springboot.learning.examples.model.Course;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface CourseMapper {
 
     @Delete({
             "delete from course",
-            "where id = #{id,jdbcType=VARCHAR}"
+            "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(String id);
+    int deleteById(Integer id);
+
 
     @Insert({
-            "insert into course (id, name, ",
-            "description, lesson_period, ",
-            "total_course)",
-            "values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, ",
-            "#{description,jdbcType=VARCHAR}, #{lessonPeriod,jdbcType=DOUBLE}, ",
-            "#{totalCourse,jdbcType=INTEGER})"
+            "insert into course (name, ",
+            "lesson_period, score)",
+            "values (#{name,jdbcType=VARCHAR}, ",
+            "#{lessonPeriod,jdbcType=DOUBLE}, #{score,jdbcType=DOUBLE})"
     })
-    int insert(Course record);
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "course.id", before = false, resultType = int.class)
+    int save(Course course);
 
-    @InsertProvider(type = CourseSqlProvider.class, method = "insertSelective")
-    int insertSelective(Course record);
 
     @Select({
             "select",
-            "id, name, description, lesson_period, total_course",
+            "id, name, lesson_period, score",
             "from course",
-            "where id = #{id,jdbcType=VARCHAR}"
+            "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
-            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
             @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR),
             @Result(column = "lesson_period", property = "lessonPeriod", jdbcType = JdbcType.DOUBLE),
-            @Result(column = "total_course", property = "totalCourse", jdbcType = JdbcType.INTEGER)
+            @Result(column = "score", property = "score", jdbcType = JdbcType.DOUBLE)
     })
-    Course selectByPrimaryKey(String id);
+    Course findById(Integer id);
 
 
-    @UpdateProvider(type = CourseSqlProvider.class, method = "updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(Course record);
-
-    @Update({
-            "update course",
-            "set name = #{name,jdbcType=VARCHAR},",
-            "description = #{description,jdbcType=VARCHAR},",
-            "lesson_period = #{lessonPeriod,jdbcType=DOUBLE},",
-            "total_course = #{totalCourse,jdbcType=INTEGER}",
-            "where id = #{id,jdbcType=VARCHAR}"
-    })
-    int updateByPrimaryKey(Course record);
+    @UpdateProvider(type = CourseSqlProvider.class, method = "update")
+    int update(Course course);
 
     @Select({
             "select",
-            "id, name, description, lesson_period, total_course",
+            "id, name, lesson_period, score",
             "from course"
     })
-    @Results({
-            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
-            @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "lesson_period", property = "lessonPeriod", jdbcType = JdbcType.DOUBLE),
-            @Result(column = "total_course", property = "totalCourse", jdbcType = JdbcType.INTEGER)
-    })
-    List<Course> selectAll();
+    List<Course> findAll();
+
 }

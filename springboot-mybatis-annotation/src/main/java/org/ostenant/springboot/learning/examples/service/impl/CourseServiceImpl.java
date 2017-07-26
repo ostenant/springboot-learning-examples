@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Madison on 2017/6/25.
- */
+
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
@@ -19,28 +17,26 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseMapper courseMapper;
 
-    public int deleteById(String id) {
-        return courseMapper.deleteByPrimaryKey(id);
+    public int deleteById(Integer id) {
+        return courseMapper.deleteById(id);
     }
 
     public int save(Course record) {
-        return courseMapper.insertSelective(record);
+        return courseMapper.save(record);
     }
 
     @Transactional(readOnly = true)
     public List<Course> findAll() {
-        return courseMapper.selectAll();
+        return courseMapper.findAll();
     }
 
-    @Override
     @Transactional(readOnly = true)
-    public Course findById(String id) {
-        return courseMapper.selectByPrimaryKey(id);
+    public Course findById(Integer id) {
+        return courseMapper.findById(id);
     }
 
-    @Override
-    public int update(Course record) {
-        return courseMapper.updateByPrimaryKeySelective(record);
+    public int update(Course course) {
+        return courseMapper.update(course);
     }
 
 }

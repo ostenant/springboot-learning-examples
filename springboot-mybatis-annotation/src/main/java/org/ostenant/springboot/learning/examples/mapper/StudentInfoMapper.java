@@ -3,74 +3,62 @@ package org.ostenant.springboot.learning.examples.mapper;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import org.ostenant.springboot.learning.examples.model.StudentInfo;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface StudentInfoMapper {
 
     @Delete({
             "delete from student_info",
-            "where id = #{id,jdbcType=VARCHAR}"
+            "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(String id);
+    int deleteById(Integer id);
 
     @Insert({
-            "insert into student_info (id, age, ",
-            "phone_number, gender, ",
-            "email, address)",
-            "values (#{id,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, ",
-            "#{phoneNumber,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, ",
-            "#{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR})"
+            "insert into student_info (age, ",
+            "address, email, ",
+            "student_id)",
+            "values (#{age,jdbcType=INTEGER}, ",
+            "#{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
+            "#{studentId,jdbcType=INTEGER})"
     })
-    int insert(StudentInfo record);
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "studentInfo.id", before = false, resultType = int.class)
+    int save(StudentInfo studentInfo);
 
-    @InsertProvider(type = StudentInfoSqlProvider.class, method = "insertSelective")
-    int insertSelective(StudentInfo record);
 
     @Select({
             "select",
-            "id, age, phone_number, gender, email, address",
+            "id, age, address, email, student_id",
             "from student_info",
-            "where id = #{id,jdbcType=VARCHAR}"
+            "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
-            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
             @Result(column = "age", property = "age", jdbcType = JdbcType.INTEGER),
-            @Result(column = "phone_number", property = "phoneNumber", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "gender", property = "gender", jdbcType = JdbcType.BIT),
+            @Result(column = "address", property = "address", jdbcType = JdbcType.VARCHAR),
             @Result(column = "email", property = "email", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "address", property = "address", jdbcType = JdbcType.VARCHAR)
+            @Result(column = "student_id", property = "studentId", jdbcType = JdbcType.INTEGER)
     })
-    StudentInfo selectByPrimaryKey(String id);
+    StudentInfo findById(Integer id);
 
 
-    @UpdateProvider(type = StudentInfoSqlProvider.class, method = "updateByPrimaryKeySelective")
-    int updateByPrimaryKeySelective(StudentInfo record);
-
-    @Update({
-            "update student_info",
-            "set age = #{age,jdbcType=INTEGER},",
-            "phone_number = #{phoneNumber,jdbcType=VARCHAR},",
-            "gender = #{gender,jdbcType=BIT},",
-            "email = #{email,jdbcType=VARCHAR},",
-            "address = #{address,jdbcType=VARCHAR}",
-            "where id = #{id,jdbcType=VARCHAR}"
-    })
-    int updateByPrimaryKey(StudentInfo record);
+    @UpdateProvider(type = StudentInfoSqlProvider.class, method = "update")
+    int update(StudentInfo studentInfo);
 
     @Select({
             "select",
-            "id, age, phone_number, gender, email, address",
+            "id, age, address, email, student_id",
             "from student_info"
     })
     @Results({
-            @Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
+            @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
             @Result(column = "age", property = "age", jdbcType = JdbcType.INTEGER),
-            @Result(column = "phone_number", property = "phoneNumber", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "gender", property = "gender", jdbcType = JdbcType.BIT),
+            @Result(column = "address", property = "address", jdbcType = JdbcType.VARCHAR),
             @Result(column = "email", property = "email", jdbcType = JdbcType.VARCHAR),
-            @Result(column = "address", property = "address", jdbcType = JdbcType.VARCHAR)
+            @Result(column = "student_id", property = "studentId", jdbcType = JdbcType.INTEGER)
     })
-    List<StudentInfo> selectAll();
+    List<StudentInfo> findAll();
 }

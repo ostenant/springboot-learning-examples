@@ -21,8 +21,11 @@
 
         <!-- 生成equals()和hashCode()方法 -->
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
         <!-- 生成的所有实体类实现序列化接口 -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 生成toString()方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!-- 大小写不敏感 -->
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
         <!-- 对生成example代码进行重命名 -->
@@ -82,7 +85,7 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator type="MIXEDMAPPER"
+        <javaClientGenerator type="ANNOTATEDMAPPER"
                              targetPackage="org.ostenant.springboot.learning.examples.mapper"
                              implementationPackage="org.ostenant.springboot.learning.examples.dao.impl"
                              targetProject="${entity.target.dir}">
@@ -107,58 +110,38 @@
             15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性
         -->
         <table tableName="student" domainObjectName="Student"
-               enableCountByExample="true"
-               enableDeleteByExample="true"
-               enableDeleteByPrimaryKey="true"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableSelectByPrimaryKey="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="true">
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
 
         <table tableName="course" domainObjectName="Course"
-               enableCountByExample="true"
-               enableDeleteByExample="true"
-               enableDeleteByPrimaryKey="true"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableSelectByPrimaryKey="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="true">
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
 
         <table tableName="student_course" domainObjectName="StudentCourse"
-               enableCountByExample="true"
-               enableDeleteByExample="true"
-               enableDeleteByPrimaryKey="true"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableSelectByPrimaryKey="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="true">
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
 
         <table tableName="student_info" domainObjectName="StudentInfo"
-               enableCountByExample="true"
-               enableDeleteByExample="true"
-               enableDeleteByPrimaryKey="true"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableSelectByPrimaryKey="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="true">
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
 
-        <table tableName="department" domainObjectName="Department"
-               enableCountByExample="true"
-               enableDeleteByExample="true"
-               enableDeleteByPrimaryKey="true"
-               enableInsert="true"
-               enableSelectByExample="true"
-               enableSelectByPrimaryKey="true"
-               enableUpdateByExample="true"
-               enableUpdateByPrimaryKey="true">
+        <table tableName="institute" domainObjectName="Institute"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
         </table>
     </context>
 

@@ -10,37 +10,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by Madison on 2017/6/25.
- */
 @RestController
-public class StudentController implements BasicController<Student, String> {
+public class StudentController implements BaseController<Student, Integer> {
 
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "/api/course/{id}", method = RequestMethod.DELETE)
-    public int deleteById(@PathVariable("id") String id) {
+    @RequestMapping(value = "/api/student/{id}", method = RequestMethod.DELETE)
+    public int deleteById(@PathVariable("id") Integer id) {
         return studentService.deleteById(id);
     }
 
-    @RequestMapping(value = "/api/course", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/student", method = RequestMethod.POST)
     public int save(Student student) {
         return studentService.save(student);
     }
 
-    @RequestMapping(value = "/api/courses", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/students", method = RequestMethod.GET)
     public List<Student> findAll() {
         return studentService.findAll();
     }
 
-    @RequestMapping(value = "/api/course/{id}", method = RequestMethod.GET)
-    public Student findById(@PathVariable("id") String id) {
+    @RequestMapping(value = "/api/student/{id}", method = RequestMethod.GET)
+    public Student findById(@PathVariable("id") Integer id) {
         return studentService.findById(id);
     }
 
-    @RequestMapping(value = "/api/course", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/student", method = RequestMethod.PUT)
     public int update(Student student) {
         return studentService.update(student);
     }
+
 }
