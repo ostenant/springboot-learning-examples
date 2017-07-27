@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Institute implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Integer id;
 
     private String name;
@@ -69,7 +67,6 @@ public class Institute implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

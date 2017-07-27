@@ -52,4 +52,8 @@ public interface InstituteMapper {
             @Result(column = "name", property = "name", jdbcType = JdbcType.VARCHAR)
     })
     List<Institute> findAll();
+
+    @InsertProvider(type = InstituteSqlProvider.class, method = "saveBatch")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int saveBatch(@Param("list") List<Institute> list);
 }
