@@ -87,6 +87,12 @@
                         <artifactId>mybatis</artifactId>
                         <version>3.2.4</version>
                     </dependency>
+
+                    <dependency>
+                        <groupId>org.ostenant.springboot.learning.examples</groupId>
+                        <artifactId>springboot-mybatis-generator-source</artifactId>
+                        <version>0.0.1-SNAPSHOT</version>
+                    </dependency>
                 </dependencies>
                 <executions>
                     <execution>

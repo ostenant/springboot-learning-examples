@@ -5,6 +5,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Student implements Serializable {
 
@@ -136,6 +137,7 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
+        Objects.hash(id, name, grade, classNumber, instituteId);
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
