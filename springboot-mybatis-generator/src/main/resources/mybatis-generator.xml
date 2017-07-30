@@ -30,6 +30,11 @@
         <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SerializablePlugin"/>
 
+        <!-- 生成的fromJson()方法 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FromJsonPlugin"/>
+
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.InnerClassKeyPlugin"/>
+
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 

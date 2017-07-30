@@ -5,13 +5,13 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
+import org.ostenant.springboot.learning.examples.mybatis.utils.CamelNameUtils;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class FromJsonPlugin extends PluginAdapter {
     private final static String JSON_ATTR_GETTER = "JSONAttrGetter";
-
 
     private FullyQualifiedJavaType jsonObject = new FullyQualifiedJavaType("com.alibaba.fastjson.JSONObject");
     private FullyQualifiedJavaType jsonAttrGetter = new FullyQualifiedJavaType("org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter");
@@ -47,6 +47,9 @@ public class FromJsonPlugin extends PluginAdapter {
         String shortName = topLevelClass.getType().getShortName();
         FullyQualifiedJavaType entityJavaType = new FullyQualifiedJavaType(fullyQualifiedName);
 
+        String outerClassShortName = topLevelClass.getType().getShortName();
+        String innerKeyClassShortName = outerClassShortName + "Key";
+
         topLevelClass.addImportedType(jsonObject);
         topLevelClass.addImportedType(jsonAttrGetter);
 
@@ -72,7 +75,7 @@ public class FromJsonPlugin extends PluginAdapter {
                 .append(instanceName).append(" ")
                 .append("=").append(" ")
                 .append("new").append(" ")
-                .append(shortName).append(";");
+                .append(shortName).append("();");
         method.addBodyLine(sb.toString());
 
         for (Iterator iter = introspectedColumns.iterator(); iter.hasNext(); method.addBodyLine(sb.toString())) {
@@ -84,32 +87,41 @@ public class FromJsonPlugin extends PluginAdapter {
             sb.append(instanceName).append(".")
                     .append(setterMethod)
                     .append("(")
-                    .append(JSON_ATTR_GETTER).append(".")
-                    .append("getString").append("(")
+                    .append(JSON_ATTR_GETTER).append(".");
+
+            FullyQualifiedJavaType fieldJavaType = introspectedColumn.getFullyQualifiedJavaType();
+            String fieldJavaTypeName = fieldJavaType.getFullyQualifiedName();
+            if (Integer.class.getName().equalsIgnoreCase(fieldJavaTypeName) ||
+                    fieldJavaTypeName.contains(Integer.class.getSimpleName())){
+                sb.append("getInteger");
+            } else if(Double.class.getName().equalsIgnoreCase(fieldJavaTypeName) ||
+                    fieldJavaTypeName.contains(Double.class.getSimpleName())){
+                sb.append("getDouble");
+            } else if(Float.class.getName().equalsIgnoreCase(fieldJavaTypeName) ||
+                    fieldJavaTypeName.contains(Float.class.getSimpleName())){
+                sb.append("getFloat");
+            } else if(Long.class.getName().equalsIgnoreCase(fieldJavaTypeName) ||
+                    fieldJavaTypeName.contains(Long.class.getSimpleName())){
+                sb.append("getLong");
+            } else if(Boolean.class.getName().equalsIgnoreCase(fieldJavaTypeName) ||
+                    fieldJavaTypeName.contains(Double.class.getSimpleName())){
+                sb.append("getBoolean");
+            } else {
+                sb.append("getString");
+            }
+
+            sb.append("(")
                     .append("fromJsonObj")
                     .append(", ")
-                    .append("")
+                    .append(innerKeyClassShortName + "." + CamelNameUtils.toUnderlineName(javaProperty))
                     .append("));");
 
         }
 
-    }
+        sb.setLength(0);
+        method.addBodyLine("return " +instanceName+ ";");
+        topLevelClass.addMethod(method);
 
-    public static void main(String[] args) {
-        String name = "modelSceneId";
-        char[] upperCharArray = {
-                'Q', 'W', 'E', 'R', 'T',
-                'Y', 'U', 'I', 'O', 'P',
-                'A', 'S', 'D', 'F', 'G',
-                'H', 'J', 'K', 'L', 'Z',
-                'X', 'C', 'V', 'B', 'N',
-                'M'};
-
-        char[] charArray = name.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-
-        }
-        
     }
 
 }
