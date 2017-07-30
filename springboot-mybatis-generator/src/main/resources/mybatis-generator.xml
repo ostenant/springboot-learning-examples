@@ -42,6 +42,9 @@
         <!-- 生成所有字段的注释 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FieldCommentPlugin"/>
 
+        <!-- 配置插入时自动生成主键 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
+
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
@@ -105,7 +108,7 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator type="ANNOTATEDMAPPER"
+        <javaClientGenerator type="XMLMAPPER"
                              targetPackage="org.ostenant.springboot.learning.examples.mapper"
                              implementationPackage="org.ostenant.springboot.learning.examples.dao.impl"
                              targetProject="${entity.target.dir}">
@@ -134,6 +137,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
         </table>
 
         <table tableName="course" domainObjectName="Course"
@@ -141,6 +145,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
         </table>
 
         <table tableName="student_course" domainObjectName="StudentCourse"
@@ -148,6 +153,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
         </table>
 
         <table tableName="student_info" domainObjectName="StudentInfo"
@@ -155,6 +161,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
         </table>
 
         <table tableName="institute" domainObjectName="Institute"
@@ -162,6 +169,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
         </table>
     </context>
 
