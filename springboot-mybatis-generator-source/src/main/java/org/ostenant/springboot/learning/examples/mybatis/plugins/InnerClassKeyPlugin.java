@@ -49,7 +49,6 @@ public class InnerClassKeyPlugin extends PluginAdapter {
 
         for (Iterator iterator = introspectedColumns.iterator(); iterator.hasNext(); ) {
             IntrospectedColumn introspectedColumn = (IntrospectedColumn) iterator.next();
-
             String fieldJavaProperty = introspectedColumn.getJavaProperty();
 
             Field field = new Field();
@@ -59,6 +58,10 @@ public class InnerClassKeyPlugin extends PluginAdapter {
             field.setName(CamelNameUtils.toUnderlineName(fieldJavaProperty));
             field.setType(FullyQualifiedJavaType.getStringInstance());
             field.setInitializationString("\"" + CamelNameUtils.toUnderlineName(fieldJavaProperty).toLowerCase() + "\"");
+
+            field.getJavaDocLines().add("/**");
+            field.getJavaDocLines().add(" * " + introspectedColumn.getRemarks());
+            field.getJavaDocLines().add(" */");
 
             innerClass.addField(field);
         }

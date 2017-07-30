@@ -19,16 +19,21 @@
         <!-- 格式化XML代码-->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
+        <!-- 生成链式builder方法 -->
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
+
         <!-- 生成equals()和hashCode()方法 -->
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
 
-        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
         <!-- 生成的所有实体类实现序列化接口 -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
         <!-- 大小写不敏感 -->
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
+
         <!-- 对生成example代码进行重命名 -->
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
             <property name="searchString" value="Example$"/>

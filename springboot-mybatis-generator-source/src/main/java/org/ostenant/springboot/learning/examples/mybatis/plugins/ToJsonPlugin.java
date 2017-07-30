@@ -51,7 +51,7 @@ public class ToJsonPlugin extends PluginAdapter {
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(jsonObject);
-        method.setName("fromJson");
+        method.setName("toJson");
 
         method.addBodyLine("JSONObject toJsonObj = new JSONObject();");
 
