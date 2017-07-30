@@ -30,10 +30,14 @@
         <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SerializablePlugin"/>
 
+        <!-- 生成XxxKey的内部类-->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.InnerClassKeyPlugin"/>
+
         <!-- 生成的fromJson()方法 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FromJsonPlugin"/>
 
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.InnerClassKeyPlugin"/>
+        <!-- 生成的toJson()方法 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.ToJsonPlugin"/>
 
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
@@ -129,7 +133,7 @@
                enableUpdateByExample="false">
         </table>
 
-        <!--<table tableName="course" domainObjectName="Course"
+        <table tableName="course" domainObjectName="Course"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
@@ -155,7 +159,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
-        </table>-->
+        </table>
     </context>
 
 </generatorConfiguration>
