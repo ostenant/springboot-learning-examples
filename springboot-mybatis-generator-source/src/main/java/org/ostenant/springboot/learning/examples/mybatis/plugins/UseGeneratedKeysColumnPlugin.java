@@ -43,7 +43,7 @@ public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
         if (StringUtility.isTrue(useGeneratedKeys)) {
             // 1.要使用useGeneratedKeys只能有一个主键 2.并且主键的类型必须是数字类型Integer或Long或Short
             List<IntrospectedColumn> primaryKeyColumns = introspectedTable.getPrimaryKeyColumns();
-            // 主键列为1时进行生成处理
+            // 主键列数为1时进行生成处理
             if (primaryKeyColumns.size() == 1) {
                 //得到这个唯一的主键列
                 IntrospectedColumn keyColumn = primaryKeyColumns.get(0);

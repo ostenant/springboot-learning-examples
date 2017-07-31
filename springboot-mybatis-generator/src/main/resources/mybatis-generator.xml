@@ -45,6 +45,9 @@
         <!-- 配置插入时自动生成主键 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
 
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.StatementRenamePlugin"/>
+
+
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
@@ -140,37 +143,37 @@
             <property name="useGeneratedKeys" value="true"></property>
         </table>
 
-        <table tableName="course" domainObjectName="Course"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <property name="useGeneratedKeys" value="true"></property>
-        </table>
+        <!--       <table tableName="course" domainObjectName="Course"
+                      enableCountByExample="false"
+                      enableDeleteByExample="false"
+                      enableSelectByExample="false"
+                      enableUpdateByExample="false">
+                   <property name="useGeneratedKeys" value="true"></property>
+               </table>
 
-        <table tableName="student_course" domainObjectName="StudentCourse"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <property name="useGeneratedKeys" value="true"></property>
-        </table>
+               <table tableName="student_course" domainObjectName="StudentCourse"
+                      enableCountByExample="false"
+                      enableDeleteByExample="false"
+                      enableSelectByExample="false"
+                      enableUpdateByExample="false">
+                   <property name="useGeneratedKeys" value="true"></property>
+               </table>
 
-        <table tableName="student_info" domainObjectName="StudentInfo"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <property name="useGeneratedKeys" value="true"></property>
-        </table>
+               <table tableName="student_info" domainObjectName="StudentInfo"
+                      enableCountByExample="false"
+                      enableDeleteByExample="false"
+                      enableSelectByExample="false"
+                      enableUpdateByExample="false">
+                   <property name="useGeneratedKeys" value="true"></property>
+               </table>
 
-        <table tableName="institute" domainObjectName="Institute"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <property name="useGeneratedKeys" value="true"></property>
-        </table>
+               <table tableName="institute" domainObjectName="Institute"
+                      enableCountByExample="false"
+                      enableDeleteByExample="false"
+                      enableSelectByExample="false"
+                      enableUpdateByExample="false">
+                   <property name="useGeneratedKeys" value="true"></property>
+               </table>-->
     </context>
 
 </generatorConfiguration>
