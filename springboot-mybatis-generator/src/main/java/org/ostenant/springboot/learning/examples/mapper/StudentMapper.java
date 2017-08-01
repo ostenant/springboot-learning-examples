@@ -18,7 +18,7 @@ public interface StudentMapper {
 
     int deleteByIds(List<Integer> list);
 
-    int saveAll(List<Student> list);
+    int saveBatch(List<Student> list);
 
     int updateBatch(List<Student> list);
 }

@@ -47,23 +47,53 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_PREFIX, "set"));
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_SUFFIX_OVERRIDES, ","));
 
+        String firstLevelIdEqualsCondition = getEqualsCondition(introspectedTable.getPrimaryKeyColumns().get(0), true);
+        String secondaryLevelIdEqualsCondition = getEqualsCondition(introspectedTable.getPrimaryKeyColumns().get(0), false);
+
         List<IntrospectedColumn> nonPrimaryKeyColumns = introspectedTable.getNonPrimaryKeyColumns();
-        nonPrimaryKeyColumns.stream().forEachOrdered(column -> {
+        nonPrimaryKeyColumns.stream().map(column -> {
             XmlElement trim = new XmlElement(MapperXmlKey.ELEMENT_TRIM);
 
             trim.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_PREFIX, column.getActualColumnName() + " = case"));
             trim.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_SUFFIX, "end,"));
 
-            XmlElement foreach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
-            foreach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
-            foreach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
-            foreach.getAttributes().add(2, new Attribute(MapperXmlKey.ATTRIBUTE_INDEX, ","));
+            XmlElement innerForeach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
+            innerForeach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
+            innerForeach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
+            innerForeach.getAttributes().add(2, new Attribute(MapperXmlKey.ATTRIBUTE_INDEX, "index"));
 
             XmlElement ifElement = new XmlElement(MapperXmlKey.ELEMENT_IF);
-            ifElement.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_TEST, ""));
+            ifElement.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_TEST, "item." + column.getJavaProperty() + " != null"));
 
+            StringBuilder builder = new StringBuilder();
+            builder.append("when ");
+            builder.append(secondaryLevelIdEqualsCondition);
+            builder.append(" then ");
+            builder.append(getEqualsResult(column, false));
 
-        });
+            TextElement contentElement = new TextElement(builder.toString());
+            ifElement.addElement(contentElement);
+
+            innerForeach.addElement(0, ifElement);
+            trim.addElement(0, innerForeach);
+
+            return trim;
+        }).forEachOrdered(trimElement -> trimSet.addElement(trimElement));
+
+        TextElement where = new TextElement("where");
+
+        XmlElement outerForeach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
+        outerForeach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
+        outerForeach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
+        outerForeach.getAttributes().add(2, new Attribute(MapperXmlKey.ATTRIBUTE_SEPARATOR, ", "));
+        outerForeach.addElement(new TextElement(firstLevelIdEqualsCondition));
+
+        statement.addElement(update);
+        statement.addElement(trimSet);
+        statement.addElement(where);
+        statement.addElement(outerForeach);
+
+        rootElement.addElement(statement);
 
         return super.sqlMapDocumentGenerated(document, introspectedTable);
     }
@@ -132,5 +162,51 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
         return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
     }
 
+
+    /**
+     * 获取格式为id = #{id,jdbcType=INTEGER}的条件语句
+     *
+     * @param column     目标列
+     * @param isTopLevel 是否处于顶级(不是foreach的子项)
+     * @return id = #{id,jdbcType=INTEGER}格式
+     */
+    private String getEqualsCondition(IntrospectedColumn column, boolean isTopLevel) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(column.getActualColumnName());
+        builder.append(" = ");
+        if (isTopLevel) {
+            builder.append("#{");
+        } else {
+            builder.append("#{item.");
+        }
+        builder.append(column.getJavaProperty());
+        builder.append(",jdbcType=");
+        builder.append(column.getJdbcTypeName());
+        builder.append("}");
+
+        return builder.toString();
+    }
+
+    /**
+     * 获取格式为#{id,jdbcType=INTEGER}的结果语句
+     *
+     * @param column     目标列
+     * @param isTopLevel 是否处于顶级(不是foreach的子项)
+     * @return id = #{id,jdbcType=INTEGER}格式
+     */
+    private String getEqualsResult(IntrospectedColumn column, boolean isTopLevel) {
+        StringBuilder builder = new StringBuilder();
+        if (isTopLevel) {
+            builder.append("#{");
+        } else {
+            builder.append("#{item.");
+        }
+        builder.append(column.getJavaProperty());
+        builder.append(",jdbcType=");
+        builder.append(column.getJdbcTypeName());
+        builder.append("}");
+
+        return builder.toString();
+    }
 
 }
