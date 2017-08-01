@@ -93,7 +93,6 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        interfaze.getMethods().stream().map(Method::getName).forEach(System.out::println);
         FullyQualifiedJavaType entityJavaType = interfaze.getMethods()
                 .stream()
                 .filter(m -> m.getName().equals(StatementIdValue.STATEMENT_SELECT_BY_PRIMARY_KEY) ||
