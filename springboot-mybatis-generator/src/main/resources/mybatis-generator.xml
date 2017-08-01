@@ -161,37 +161,38 @@
             <property name="useGeneratedKeys" value="true"></property>
         </table>
 
-        <!--       <table tableName="course" domainObjectName="Course"
-                      enableCountByExample="false"
-                      enableDeleteByExample="false"
-                      enableSelectByExample="false"
-                      enableUpdateByExample="false">
-                   <property name="useGeneratedKeys" value="true"></property>
-               </table>
+        <table tableName="course" domainObjectName="Course"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
+        </table>
 
-               <table tableName="student_course" domainObjectName="StudentCourse"
-                      enableCountByExample="false"
-                      enableDeleteByExample="false"
-                      enableSelectByExample="false"
-                      enableUpdateByExample="false">
-                   <property name="useGeneratedKeys" value="true"></property>
-               </table>
+        <table tableName="student_course" domainObjectName="StudentCourse"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
+        </table>
 
-               <table tableName="student_info" domainObjectName="StudentInfo"
-                      enableCountByExample="false"
-                      enableDeleteByExample="false"
-                      enableSelectByExample="false"
-                      enableUpdateByExample="false">
-                   <property name="useGeneratedKeys" value="true"></property>
-               </table>
+        <table tableName="student_info" domainObjectName="StudentInfo"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
+        </table>
 
-               <table tableName="institute" domainObjectName="Institute"
-                      enableCountByExample="false"
-                      enableDeleteByExample="false"
-                      enableSelectByExample="false"
-                      enableUpdateByExample="false">
-                   <property name="useGeneratedKeys" value="true"></property>
-               </table>-->
+        <table tableName="institute" domainObjectName="Institute"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="useGeneratedKeys" value="true"></property>
+        </table>
+
     </context>
 
 </generatorConfiguration>

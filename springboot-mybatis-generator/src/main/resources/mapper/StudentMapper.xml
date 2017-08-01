@@ -24,17 +24,17 @@
 
 
   <delete id="deleteById" parameterType="java.lang.Integer">
-    DELETE FROM student
-    WHERE id = #{id,jdbcType=INTEGER}
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
   </delete>
 
 
   <insert id="save" keyColumn="id" keyProperty="id"
           parameterType="org.ostenant.springboot.learning.examples.model.Student" useGeneratedKeys="true">
-    INSERT INTO student (id, name, grade,
-                         class_number, institute_id)
-    VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
-            #{classNumber,jdbcType=VARCHAR}, #{instituteId,jdbcType=INTEGER})
+    insert into student (id, name, grade,
+    class_number, institute_id)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
+    #{classNumber,jdbcType=VARCHAR}, #{instituteId,jdbcType=INTEGER})
   </insert>
 
 

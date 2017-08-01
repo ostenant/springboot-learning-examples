@@ -62,8 +62,8 @@
         </dependency>
         <dependency>
             <groupId>org.ostenant.springboot.learning.examples</groupId>
-            <artifactId>springboot-mybatis-generator-source</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>springboot-mybatis-generator-plus</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -95,8 +95,8 @@
 
                     <dependency>
                         <groupId>org.ostenant.springboot.learning.examples</groupId>
-                        <artifactId>springboot-mybatis-generator-source</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
+                        <artifactId>springboot-mybatis-generator-plus</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
                 <executions>
