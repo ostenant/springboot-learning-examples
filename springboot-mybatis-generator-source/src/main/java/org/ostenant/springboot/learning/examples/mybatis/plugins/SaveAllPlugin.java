@@ -48,7 +48,6 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
 
         List<IntrospectedColumn> tableColumns = introspectedTable.getAllColumns();
 
-
         TextElement columns = new TextElement(tableColumns.stream()
                 .map(IntrospectedColumn::getActualColumnName)
                 .collect(Collectors.joining(", ", "(", ")")));
@@ -119,7 +118,6 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
 
         FullyQualifiedJavaType listEntityJavaType = new FullyQualifiedJavaType(listJavaType.getShortName());
         listEntityJavaType.addTypeArgument(entityJavaType);
-
 
         switch (primaryKeyJavaType.getFullyQualifiedName()) {
             case StatementIdValue.JAVA_LANG_INTEGER:
