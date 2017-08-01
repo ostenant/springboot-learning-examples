@@ -8,6 +8,11 @@ public final class StatementIdValue {
     public static final String STATEMENT_FIND_BY_IDS = "findByIds";
 
     /**
+     * Statement ID VALUE (deleteByIds)
+     */
+    public static final String STATEMENT_DELETE_BY_IDS = "deleteByIds";
+
+    /**
      * Statement ID VALUE (saveAll)
      */
     public static final String STATEMENT_SAVE_ALL = "saveAll";
@@ -17,6 +22,35 @@ public final class StatementIdValue {
      */
     public static final String STATEMENT_SELECT_BY_PRIMARY_KEY = "selectByPrimaryKey";
 
+    /**
+     * Statement ID VALUE (findById)
+     */
+    public static final String STATEMENT_FIND_BY_ID = "findById";
+
+    /**
+     * Statement ID VALUE (deleteByPrimaryKey)
+     */
+    public static final String STATEMENT_DELETE_BY_PRIMARY_KEY = "deleteByPrimaryKey";
+
+    /**
+     * Statement ID VALUE (deleteById)
+     */
+    public static final String STATEMENT_DELETE_BY_ID = "deleteById";
+
+    /**
+     * Statement ID VALUE (insert)
+     */
+    public static final String STATEMENT_INSERT = "insert";
+
+    /**
+     * Statement ID VALUE (save)
+     */
+    public static final String STATEMENT_SAVE = "save";
+
+    /**
+     * Statement ID VALUE (update)
+     */
+    public static final String STATEMENT_UPDATE = "update";
 
     /**
      * java.util.List

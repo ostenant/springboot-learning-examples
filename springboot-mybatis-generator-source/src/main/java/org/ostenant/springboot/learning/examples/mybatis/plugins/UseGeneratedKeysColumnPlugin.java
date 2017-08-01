@@ -10,6 +10,7 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
@@ -18,6 +19,8 @@ public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
     protected static final String KEY_COLUMN_PROPERTY = "keyColumn";
     protected static final String KEY_PROPERTY_PROPERTY = "keyProperty";
     protected static final String USE_GENERATED_KEYS = "useGeneratedKeys";
+
+    protected static final List<String> GENERATED_PROPERTY = Arrays.asList(KEY_COLUMN_PROPERTY, KEY_PROPERTY_PROPERTY, USE_GENERATED_KEYS);
 
 
     @Override
@@ -55,13 +58,19 @@ public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
                         || javaType.equals(PrimitiveTypeWrapper
                         .getShortInstance())) {
 
-                    element.addAttribute(new Attribute(USE_GENERATED_KEYS_PROPERTY, "true"));
-                    //通过IntrospectedColumn的getActualColumnName得到列中的名称 用于生成keyColumn属性
-                    element.addAttribute(new Attribute(KEY_COLUMN_PROPERTY, keyColumn
-                            .getActualColumnName()));
-                    //通过IntrospectedColumn的getJavaProperty方法得到key在Java对象中的属性名 用于生成keyProperty属性
-                    element.addAttribute(new Attribute(KEY_PROPERTY_PROPERTY, keyColumn
-                            .getJavaProperty()));
+                    if (element.getAttributes().stream()
+                            .distinct()
+                            .filter(attribute ->
+                                    GENERATED_PROPERTY.contains(attribute.getName()))
+                            .count() <= 0) {
+                        element.addAttribute(new Attribute(USE_GENERATED_KEYS_PROPERTY, "true"));
+                        //通过IntrospectedColumn的getActualColumnName得到列中的名称 用于生成keyColumn属性
+                        element.addAttribute(new Attribute(KEY_COLUMN_PROPERTY, keyColumn
+                                .getActualColumnName()));
+                        //通过IntrospectedColumn的getJavaProperty方法得到key在Java对象中的属性名 用于生成keyProperty属性
+                        element.addAttribute(new Attribute(KEY_PROPERTY_PROPERTY, keyColumn
+                                .getJavaProperty()));
+                    }
                 }
             }
         }

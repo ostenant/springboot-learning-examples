@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-
     <!-- XML节点配置顺序按需严格按照如下配置，不然使用maven执行“mybatis-generator:generate -e”时会报错
          property*(plugin*,commentGenerator?,(connectionFactory|jdbcConnection),
          javaTypeResolver?,javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+) -->
@@ -14,52 +13,63 @@
     <context id="MYSQL" targetRuntime="MyBatis3" defaultModelType="flat">
         <!-- 生成的Java文件的编码-->
         <property name="javaFileEncoding" value="UTF-8"/>
+
         <!-- 格式化java代码-->
         <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+
         <!-- 格式化XML代码-->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
-        <!-- 生成equals()和hashCode()方法 -->
-        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>-->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.EqualsHashCodePlugin"/>
 
-        <!-- 生成Builder模式的withXXX()方法 -->
-        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
-
-        <!-- 生成的所有实体类实现序列化接口 -->
-        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SerializablePlugin"/>
-
-        <!-- 生成XxxKey的内部类-->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.InnerClassKeyPlugin"/>
-
-        <!-- 生成的fromJson()方法 -->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FromJsonPlugin"/>
-
-        <!-- 生成的toJson()方法 -->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.ToJsonPlugin"/>
-
-        <!-- 生成所有字段的注释 -->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FieldCommentPlugin"/>
-
-        <!-- 配置插入时自动生成主键 -->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
-
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FindByIdsPlugin"/>
-
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SaveAllPlugin"/>
-
-        <!-- 生成toString()方法 -->
+        <!-- Plugin List -->
+        <!-- 配置生成自定义equals()和hashCode()方法的插件 -->
+        <!-- 配置生成toString()方法的插件 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
-        <!-- 使得大小写不敏感 -->
+        <!-- 配置大小写不敏感的插件 -->
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"/>
 
-        <!-- 对生成example代码进行重命名 -->
-        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-            <property name="searchString" value="Example$"/>
-            <property name="replaceString" value="Criteria"/>
-        </plugin>
+        <!-- 配置生成自定义hashCode()方法的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.EqualsHashCodePlugin"/>
+
+        <!-- 配置生成自定义Builder模式的withXXXProperty()方法的插件 -->
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin"/>
+
+        <!-- 配置生成自定义的类序列化接口的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SerializablePlugin"/>
+
+        <!-- 配置生成EntityKey的内部类的插件-->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.InnerClassKeyPlugin"/>
+
+        <!-- 配置生成的fromJson()方法的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FromJsonPlugin"/>
+
+        <!-- 配置生成的toJson()方法的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.ToJsonPlugin"/>
+
+        <!-- 配置生成所有字段的注释的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FieldCommentPlugin"/>
+
+        <!-- 配置插入时自动生成主键的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
+
+        <!-- 配置生成findByIds()方法和sql查询statement的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FindByIdsPlugin"/>
+
+        <!-- 配置生成deleteByIds()方法和sql查询statement的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.DeleteByIdsPlugin"/>
+
+        <!-- 配置生成saveAll()方法和sql查询statement的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SaveAllPlugin"/>
+
+        <!-- 配置修改默认的方法名称和statement id的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.RenameStatementPlugin"/>
+
+        <!-- 配置对生成example进行重命名的插件 -->
+        <!--        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+                    <property name="searchString" value="Example$"/>
+                    <property name="replaceString" value="Criteria"/>
+                </plugin>-->
 
         <!-- （非必需）用于创建class时，对注释进行控制 -->
         <commentGenerator>
@@ -80,7 +90,8 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- Model模型生成器,用来生成含有主键key的类，记录类以及查询Example类
+
+        <!-- 1. Model模型生成器,用来生成含有主键key的类，记录类以及查询Example类
             targetPackage：指定生成的model生成所在的包名
             targetProject：指定在该项目下所在的路径
         -->
@@ -98,13 +109,15 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!-- Mapper XML映射文件生成所在的目录，为每一个数据库的表生成对应的SqlMap.xml文件 -->
+
+        <!-- 2. Mapper XML映射文件生成所在的目录，为每一个数据库的表生成对应的SqlMap.xml文件 -->
         <sqlMapGenerator targetPackage="mapper"
                          targetProject="${dao.resources.dir}">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
+
+        <!-- 3. 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
             targetPackage/targetProject:同javaModelGenerator
             type：选择怎么生成mapper接口（在MyBatis3/MyBatis3Simple下）：
                 1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
@@ -118,6 +131,7 @@
                              targetProject="${entity.target.dir}">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
+
 
         <!-- 所有的数据库表与实体对象
             1，schema：数据库的schema；
