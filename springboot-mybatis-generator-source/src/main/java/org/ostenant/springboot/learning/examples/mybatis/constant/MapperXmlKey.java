@@ -119,4 +119,9 @@ public final class MapperXmlKey {
     public static final String ATTRIBUTE_CLOSE = "close";
 
 
+    /**
+     * index Attribute
+     */
+    public static final String ATTRIBUTE_INDEX = "index";
+
 }

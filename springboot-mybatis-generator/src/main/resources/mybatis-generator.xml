@@ -60,7 +60,7 @@
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.DeleteByIdsPlugin"/>
 
         <!-- 配置生成saveAll()方法和sql查询statement的插件 -->
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SaveAllPlugin"/>
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SaveBatchPlugin"/>
 
         <!-- 配置修改默认的方法名称和statement id的插件 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.RenameStatementPlugin"/>

@@ -13,9 +13,14 @@ public final class StatementIdValue {
     public static final String STATEMENT_DELETE_BY_IDS = "deleteByIds";
 
     /**
-     * Statement ID VALUE (saveAll)
+     * Statement ID VALUE (saveBatch)
      */
-    public static final String STATEMENT_SAVE_ALL = "saveAll";
+    public static final String STATEMENT_SAVE_BATCH = "saveBatch";
+
+    /**
+     * Statement ID VALUE (updateBatch)
+     */
+    public static final String STATEMENT_UPDATE_BATCH = "updateBatch";
 
     /**
      * Statement ID VALUE (selectByPrimaryKey)

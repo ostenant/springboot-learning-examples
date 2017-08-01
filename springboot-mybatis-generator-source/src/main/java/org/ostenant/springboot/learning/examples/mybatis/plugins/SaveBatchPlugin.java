@@ -13,19 +13,19 @@ import org.ostenant.springboot.learning.examples.mybatis.constant.StatementIdVal
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
+public class SaveBatchPlugin extends UseGeneratedKeysColumnPlugin {
 
     private FullyQualifiedJavaType listJavaType = new FullyQualifiedJavaType(StatementIdValue.JAVA_UTIL_LIST);
 
 
     @Override
-    public boolean validate(List<String> warings) {
+    public boolean validate(List<String> warnings) {
         return true;
     }
 
     /**
      * Mapper.xml文档DOM生成树，可以把自己的Statement挂在DOM树上。
-     * 添加saveAll的SQL Statement
+     * 添加saveBatch的SQL Statement
      *
      * @param document          SQLMapper.xml 文档树描述对象
      * @param introspectedTable 表描述对象
@@ -36,8 +36,8 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
         XmlElement rootElement = document.getRootElement();
         // <insert></insert>
         XmlElement statement = new XmlElement(MapperXmlKey.ELEMENT_INSERT);
-        // id="saveAll"
-        statement.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_ID, StatementIdValue.STATEMENT_SAVE_ALL));
+        // id="saveBatch"
+        statement.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_ID, StatementIdValue.STATEMENT_SAVE_BATCH));
         // parameterType="java.util.List"
         statement.getAttributes().add(new Attribute(MapperXmlKey.ATTRIBUTE_PARAMETER_TYPE, StatementIdValue.JAVA_UTIL_LIST));
         // 配置主键自动生成 - generateKey
@@ -84,7 +84,7 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
 
     /**
      * Mapper.java接口生成树，可以把自己的方法挂接在此接口上
-     * int saveAll(List<EntityType> list);
+     * int saveBatch(List<EntityType> list);
      *
      * @param interfaze         Mapper接口信息描述对象
      * @param topLevelClass     此数据库表对应的实体类描述对象
@@ -112,10 +112,9 @@ public class SaveAllPlugin extends UseGeneratedKeysColumnPlugin {
                 .collect(Collectors.toList())
                 .get(0);
 
-
         interfaze.addImportedType(listJavaType);
         Method method = new Method();
-        method.setName(StatementIdValue.STATEMENT_SAVE_ALL);
+        method.setName(StatementIdValue.STATEMENT_SAVE_BATCH);
 
         FullyQualifiedJavaType listEntityJavaType = new FullyQualifiedJavaType(listJavaType.getShortName());
         listEntityJavaType.addTypeArgument(entityJavaType);

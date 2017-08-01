@@ -90,4 +90,43 @@
         </foreach>
     </insert>
 
+
+    <update id="updateBatch" parameterType="java.util.List">
+        update student
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="name = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="grade = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.grade != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.grade,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="class_number = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.classNumber != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.classNumber,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="institute_id = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.instituteId != null">
+                        when id = #{item.id,jdbcType=INTEGER} then #{item.instituteId,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where
+        <foreach collection="list" item="item" open="" separator=", " close="" index="index">
+            id = #{id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
 </mapper>
