@@ -14,10 +14,10 @@ import java.util.List;
 
 public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
 
-    private static final String USE_GENERATED_KEYS_PROPERTY = "useGeneratedKeys";
-    private static final String KEY_COLUMN_PROPERTY = "keyColumn";
-    private static final String KEY_PROPERTY_PROPERTY = "keyProperty";
-    private static final String USE_GENERATED_KEYS = "useGeneratedKeys";
+    protected static final String USE_GENERATED_KEYS_PROPERTY = "useGeneratedKeys";
+    protected static final String KEY_COLUMN_PROPERTY = "keyColumn";
+    protected static final String KEY_PROPERTY_PROPERTY = "keyProperty";
+    protected static final String USE_GENERATED_KEYS = "useGeneratedKeys";
 
 
     @Override
@@ -26,16 +26,16 @@ public class UseGeneratedKeysColumnPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean sqlMapInsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public final boolean sqlMapInsertElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return this.configUseGeneratedKey(element, introspectedTable);
     }
 
     @Override
-    public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public final boolean sqlMapInsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return this.configUseGeneratedKey(element, introspectedTable);
     }
 
-    private boolean configUseGeneratedKey(XmlElement element, IntrospectedTable introspectedTable) {
+    protected boolean configUseGeneratedKey(XmlElement element, IntrospectedTable introspectedTable) {
         // 直接从Table节点中尝试去获取useGeneratedKeys属性
         String useGeneratedKeys = introspectedTable.getTableConfigurationProperty(USE_GENERATED_KEYS);
 

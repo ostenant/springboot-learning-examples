@@ -1,4 +1,4 @@
-# Êı¾İÔ´ÅäÖÃ
+# æ•°æ®æºé…ç½®
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/learning?useUnicode=true&characterEncoding=utf8
@@ -6,7 +6,7 @@ spring:
     username: root
     password: root
 
-# ÅäÖÃMapper½Ó¿ÚµÄÎ»ÖÃ
+# é…ç½®Mapperæ¥å£çš„ä½ç½®
 mybatis:
   type-aliases-package: org.ostenant.springboot.learning.examples.model
   mapper-locations: mapper/*.xml

@@ -8,100 +8,17 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+import org.ostenant.springboot.learning.examples.mybatis.constant.MapperXmlKey;
+import org.ostenant.springboot.learning.examples.mybatis.constant.MapperXmlValue;
+import org.ostenant.springboot.learning.examples.mybatis.constant.StatementIdValue;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StatementRenamePlugin extends PluginAdapter {
-
-    /**
-     * Statement ID KEY
-     */
-    private static final String STATEMENT_ID_ATTRIBUTE = "id";
-    /**
-     * Statement ID VALUE(findByIds)
-     */
-    private static final String STATEMENT_FIND_BY_IDS = "findByIds";
-
-    /**
-     * select Element
-     */
-    private static final String SELECT_XML_ELEMENT = "select";
-
-    /**
-     * include Element
-     */
-    private static final String INCLUDE_XML_ELEMENT = "include";
-
-    /**
-     * foreach Element
-     */
-    private static final String FOREACH_ELEMENT = "foreach";
-
-    /**
-     * parameterType Attribute
-     */
-    private static final String PARAMETER_TYPE_ATTRIBUTE = "parameterType";
-
-    /**
-     * resultMap Attribute
-     */
-    private static final String RESULT_MAP_ATTRIBUTE = "resultMap";
-
-    /**
-     * refid Attribute
-     */
-    private static final String REFID_ATTRIBUTE = "refid";
-
-    /**
-     * collection Attribute
-     */
-    private static final String COLLECTION_ATTRIBUTE = "collection";
-
-    /**
-     * item Attribute
-     */
-    private static final String ITEM_ATTRIBUTE = "item";
-
-    /**
-     * open Attribute
-     */
-    private static final String OPEN_ATTRIBUTE = "open";
-
-    /**
-     * separator Attribute
-     */
-    private static final String SEPARATOR_ATTRIBUTE = "separator";
-
-    /**
-     * close Attribute
-     */
-    private static final String CLOSE_ATTRIBUTE = "close";
-
-    /**
-     * java.util.List
-     */
-    private static final String PARAMETER_TYPE_LIST = "java.util.List";
-
-    /**
-     * BaseResultMap
-     */
-    private static final String BASE_RESULT_MAP = "BaseResultMap";
-
-    /**
-     * Base_Column_List
-     */
-    private static final String Base_Column_List = "Base_Column_List";
-
-    //
-
-    /**
-     * selectByPrimaryKey
-     */
-    private static final String SELECT_BY_PRIMARY_KEY_METHOD = "selectByPrimaryKey";
+public class FindByIdsPlugin extends PluginAdapter {
 
 
-    private FullyQualifiedJavaType listJavaType = new FullyQualifiedJavaType("java.util.List");
+    private FullyQualifiedJavaType listJavaType = new FullyQualifiedJavaType(StatementIdValue.JAVA_UTIL_LIST);
 
 
     @Override
@@ -115,32 +32,32 @@ public class StatementRenamePlugin extends PluginAdapter {
      *
      * @param document          SQLMapper.xml 文档树描述对象
      * @param introspectedTable 表描述对象
-     * @return
+     * @return 是否生成
      */
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
         XmlElement rootElement = document.getRootElement();
         // <select></select>
-        XmlElement statement = new XmlElement(SELECT_XML_ELEMENT);
+        XmlElement statement = new XmlElement(MapperXmlKey.ELEMENT_SELECT);
         // id="findByIds"
-        statement.getAttributes().add(0, new Attribute(STATEMENT_ID_ATTRIBUTE, STATEMENT_FIND_BY_IDS));
+        statement.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_ID, StatementIdValue.STATEMENT_FIND_BY_IDS));
         // parameterType="java.util.List"
-        statement.getAttributes().add(new Attribute(PARAMETER_TYPE_ATTRIBUTE, PARAMETER_TYPE_LIST));
+        statement.getAttributes().add(new Attribute(MapperXmlKey.ATTRIBUTE_PARAMETER_TYPE, StatementIdValue.JAVA_UTIL_LIST));
         // resultMap="BaseResultMap"
-        statement.getAttributes().add(new Attribute(RESULT_MAP_ATTRIBUTE, BASE_RESULT_MAP));
+        statement.getAttributes().add(new Attribute(MapperXmlKey.ATTRIBUTE_RESULT_MAP, MapperXmlValue.ATTRIBUTE_BASE_RESULT_MAP));
 
-        TextElement select = new TextElement(SELECT_XML_ELEMENT);
-        XmlElement include = new XmlElement(INCLUDE_XML_ELEMENT);
-        include.getAttributes().add(new Attribute(REFID_ATTRIBUTE, Base_Column_List));
+        TextElement select = new TextElement("select");
+        XmlElement include = new XmlElement(MapperXmlKey.ELEMENT_INCLUDE);
+        include.getAttributes().add(new Attribute(MapperXmlKey.ATTRIBUTE_REFID, MapperXmlValue.ATTRIBUTE_BASE_COLUMN_LIST));
 
         TextElement from = new TextElement("from " + introspectedTable.getTableConfiguration().getTableName());
 
-        XmlElement foreach = new XmlElement(FOREACH_ELEMENT);
-        foreach.getAttributes().add(0, new Attribute(COLLECTION_ATTRIBUTE, "list"));
-        foreach.getAttributes().add(1, new Attribute(ITEM_ATTRIBUTE, "item"));
-        foreach.getAttributes().add(2, new Attribute(OPEN_ATTRIBUTE, "("));
-        foreach.getAttributes().add(3, new Attribute(SEPARATOR_ATTRIBUTE, ","));
-        foreach.getAttributes().add(new Attribute(CLOSE_ATTRIBUTE, ")"));
+        XmlElement foreach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
+        foreach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
+        foreach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
+        foreach.getAttributes().add(2, new Attribute(MapperXmlKey.ATTRIBUTE_OPEN, "("));
+        foreach.getAttributes().add(3, new Attribute(MapperXmlKey.ATTRIBUTE_SEPARATOR, ","));
+        foreach.getAttributes().add(4, new Attribute(MapperXmlKey.ATTRIBUTE_CLOSE, ")"));
 
         List<IntrospectedColumn> primaryKeyColumns = introspectedTable.getPrimaryKeyColumns();
 
@@ -158,19 +75,19 @@ public class StatementRenamePlugin extends PluginAdapter {
 
     /**
      * Mapper.java接口生成树，可以把自己的方法挂接在此接口上
-     * List findByIds(List list);
+     * List<EntityType> findByIds(List<IDType> list);
      *
      * @param interfaze         Mapper接口信息描述对象
      * @param topLevelClass     此数据库表对应的实体类描述对象
      * @param introspectedTable 表描述对象
-     * @return
+     * @return 是否生成
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 
         FullyQualifiedJavaType entityJavaType = interfaze.getMethods()
                 .stream()
-                .filter(m -> m.getName().equals(SELECT_BY_PRIMARY_KEY_METHOD))
+                .filter(m -> m.getName().equals(StatementIdValue.STATEMENT_SELECT_BY_PRIMARY_KEY))
                 .distinct()
                 .map(Method::getReturnType)
                 .collect(Collectors.toList())
@@ -178,7 +95,7 @@ public class StatementRenamePlugin extends PluginAdapter {
 
         FullyQualifiedJavaType primaryKeyJavaType = interfaze.getMethods()
                 .stream()
-                .filter(m -> m.getName().equals(SELECT_BY_PRIMARY_KEY_METHOD))
+                .filter(m -> m.getName().equals(StatementIdValue.STATEMENT_SELECT_BY_PRIMARY_KEY))
                 .distinct()
                 .map(Method::getParameters)
                 .map(parameters -> parameters.get(0).getType())
@@ -187,7 +104,7 @@ public class StatementRenamePlugin extends PluginAdapter {
 
         interfaze.addImportedType(listJavaType);
         Method method = new Method();
-        method.setName(STATEMENT_FIND_BY_IDS);
+        method.setName(StatementIdValue.STATEMENT_FIND_BY_IDS);
 
         FullyQualifiedJavaType listEntityJavaType = new FullyQualifiedJavaType(listJavaType.getShortName());
         listEntityJavaType.addTypeArgument(entityJavaType);

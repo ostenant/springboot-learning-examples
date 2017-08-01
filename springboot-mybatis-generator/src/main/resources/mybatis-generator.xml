@@ -45,8 +45,9 @@
         <!-- 配置插入时自动生成主键 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
 
-        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.StatementRenamePlugin"/>
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FindByIdsPlugin"/>
 
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.SaveAllPlugin"/>
 
         <!-- 生成toString()方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>

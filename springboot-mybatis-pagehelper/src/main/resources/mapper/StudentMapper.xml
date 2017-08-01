@@ -2,34 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.ostenant.springboot.learning.examples.mapper.StudentMapper">
   <resultMap id="BaseResultMap" type="org.ostenant.springboot.learning.examples.model.Student">
-    <id column="id" jdbcType="INTEGER" property="id"/>
-    <result column="name" jdbcType="VARCHAR" property="name"/>
-    <result column="grade" jdbcType="VARCHAR" property="grade"/>
-    <result column="class_number" jdbcType="VARCHAR" property="classNumber"/>
-    <result column="institute_id" jdbcType="INTEGER" property="instituteId"/>
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
+    <result column="institute_id" jdbcType="INTEGER" property="instituteId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, grade, class_number, institute_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
+    select 
+    <include refid="Base_Column_List" />
     from student
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    DELETE FROM student
-    WHERE id = #{id,jdbcType=INTEGER}
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id"
-          parameterType="org.ostenant.springboot.learning.examples.model.Student" useGeneratedKeys="true">
-    INSERT INTO student (id, name, grade,
-                         class_number, institute_id)
-    VALUES (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
-            #{classNumber,jdbcType=VARCHAR}, #{instituteId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="org.ostenant.springboot.learning.examples.model.Student">
+    insert into student (id, name, grade, 
+      class_number, institute_id)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, 
+      #{classNumber,jdbcType=VARCHAR}, #{instituteId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id"
-          parameterType="org.ostenant.springboot.learning.examples.model.Student" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="org.ostenant.springboot.learning.examples.model.Student">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -85,21 +83,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.ostenant.springboot.learning.examples.model.Student">
-    UPDATE student
-    SET name       = #{name,jdbcType=VARCHAR},
-      grade        = #{grade,jdbcType=VARCHAR},
+    update student
+    set name = #{name,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
       class_number = #{classNumber,jdbcType=VARCHAR},
       institute_id = #{instituteId,jdbcType=INTEGER}
-    WHERE id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from student
-    <foreach close=")" collection="list" item="item" open="(" separator=",">
-      #{item,jdbcType=INTEGER}
-    </foreach>
-  </select>
-
 </mapper>
