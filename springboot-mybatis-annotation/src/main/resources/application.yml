@@ -4,5 +4,16 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
+
 mybatis:
   type-aliases-package: org.ostenant.springboot.learning.examples.model
+
+logging:
+  level:
+    root: INFO
+    org:
+      ostenant:
+        springboot:
+          learning:
+            examples:
+              mapper: debug
