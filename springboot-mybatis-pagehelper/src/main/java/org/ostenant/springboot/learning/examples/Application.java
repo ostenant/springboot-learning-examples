@@ -26,7 +26,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        PageHelper.startPage(0, 2);
+        PageHelper.startPage(0, 5);
         List<Institute> institutes = instituteMapper.findAll();
         institutes.forEach(System.out::println);
     }

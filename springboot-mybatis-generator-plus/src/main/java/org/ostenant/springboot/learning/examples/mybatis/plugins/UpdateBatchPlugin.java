@@ -47,8 +47,8 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_PREFIX, "set"));
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_SUFFIX_OVERRIDES, ","));
 
-        String firstLevelIdEqualsCondition = getEqualsCondition(introspectedTable.getPrimaryKeyColumns().get(0), true);
         String secondaryLevelIdEqualsCondition = getEqualsCondition(introspectedTable.getPrimaryKeyColumns().get(0), false);
+        String secondaryLevelIdEqualsResult = getEqualsResult(introspectedTable.getPrimaryKeyColumns().get(0), false);
 
         List<IntrospectedColumn> nonPrimaryKeyColumns = introspectedTable.getNonPrimaryKeyColumns();
         nonPrimaryKeyColumns.stream().map(column -> {
@@ -67,7 +67,7 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
 
             StringBuilder builder = new StringBuilder();
             builder.append("when ");
-            builder.append(secondaryLevelIdEqualsCondition);
+            builder.append(secondaryLevelIdEqualsResult);
             builder.append(" then ");
             builder.append(getEqualsResult(column, false));
 
@@ -80,13 +80,15 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
             return trim;
         }).forEachOrdered(trimElement -> trimSet.addElement(trimElement));
 
-        TextElement where = new TextElement("where");
+        TextElement where = new TextElement("where " + introspectedTable.getPrimaryKeyColumns().get(0).getActualColumnName() + " in");
 
         XmlElement outerForeach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
         outerForeach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
         outerForeach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
+        outerForeach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_OPEN, "("));
         outerForeach.getAttributes().add(2, new Attribute(MapperXmlKey.ATTRIBUTE_SEPARATOR, ", "));
-        outerForeach.addElement(new TextElement(firstLevelIdEqualsCondition));
+        outerForeach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_CLOSE, ")"));
+        outerForeach.addElement(new TextElement(secondaryLevelIdEqualsResult));
 
         statement.addElement(update);
         statement.addElement(trimSet);

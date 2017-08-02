@@ -13,7 +13,7 @@
 
 
   <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from institute
     where id = #{id,jdbcType=INTEGER}
@@ -55,6 +55,7 @@
     select
     <include refid="Base_Column_List"/>
     from institute
+    where id in
     <foreach close=")" collection="list" item="item" open="(" separator=",">
       #{item,jdbcType=INTEGER}
     </foreach>
@@ -63,7 +64,7 @@
 
   <delete id="deleteByIds" parameterType="java.util.List">
     delete from
-    student
+    institute
     where
     id in
     <foreach close=")" collection="list" item="item" open="(" separator=",">
@@ -89,14 +90,14 @@
       <trim prefix="name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.name != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+            when #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
     </trim>
-    where
-    <foreach collection="list" item="item" separator=", ">
-      id = #{id,jdbcType=INTEGER}
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
     </foreach>
   </update>
 

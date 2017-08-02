@@ -8,25 +8,35 @@
     <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
     <result column="institute_id" jdbcType="INTEGER" property="instituteId" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, name, grade, class_number, institute_id
   </sql>
+
+
   <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from student
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from student
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+
   <insert id="save" keyColumn="id" keyProperty="id" parameterType="org.ostenant.springboot.learning.examples.model.Student" useGeneratedKeys="true">
     insert into student (id, name, grade, 
       class_number, institute_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, 
       #{classNumber,jdbcType=VARCHAR}, #{instituteId,jdbcType=INTEGER})
   </insert>
+
+
   <update id="update" parameterType="org.ostenant.springboot.learning.examples.model.Student">
     update student
     <set>
@@ -45,19 +55,26 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
   <select id="findAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
   </select>
+
+
   <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from student
+    where id in
     <foreach close=")" collection="list" item="item" open="(" separator=",">
       #{item,jdbcType=INTEGER}
     </foreach>
   </select>
+
+
   <delete id="deleteByIds" parameterType="java.util.List">
     delete from
     student
@@ -67,6 +84,8 @@
       #{item,jdbcType=INTEGER}
     </foreach>
   </delete>
+
+
   <insert id="saveBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
     insert into
     student
@@ -76,41 +95,44 @@
       (#{item.id,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, #{item.grade,jdbcType=VARCHAR}, #{item.classNumber,jdbcType=VARCHAR}, #{item.instituteId,jdbcType=INTEGER})
     </foreach>
   </insert>
+
+
   <update id="updateBatch" parameterType="java.util.List">
     update student
     <trim prefix="set" suffixOverrides=",">
       <trim prefix="name = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.name != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+            when #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
       <trim prefix="grade = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.grade != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.grade,jdbcType=VARCHAR}
+            when #{item.id,jdbcType=INTEGER} then #{item.grade,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
       <trim prefix="class_number = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.classNumber != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.classNumber,jdbcType=VARCHAR}
+            when #{item.id,jdbcType=INTEGER} then #{item.classNumber,jdbcType=VARCHAR}
           </if>
         </foreach>
       </trim>
       <trim prefix="institute_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.instituteId != null">
-            when id = #{item.id,jdbcType=INTEGER} then #{item.instituteId,jdbcType=INTEGER}
+            when #{item.id,jdbcType=INTEGER} then #{item.instituteId,jdbcType=INTEGER}
           </if>
         </foreach>
       </trim>
     </trim>
-    where
-    <foreach collection="list" item="item" separator=", ">
-      id = #{id,jdbcType=INTEGER}
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
     </foreach>
   </update>
+
 </mapper>

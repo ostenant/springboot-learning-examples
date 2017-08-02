@@ -52,6 +52,8 @@ public class FindByIdsPlugin extends PluginAdapter {
 
         TextElement from = new TextElement("from " + introspectedTable.getTableConfiguration().getTableName());
 
+        TextElement where = new TextElement("where " + introspectedTable.getPrimaryKeyColumns().get(0).getActualColumnName() + " in");
+
         XmlElement foreach = new XmlElement(MapperXmlKey.ELEMENT_FOREACH);
         foreach.getAttributes().add(0, new Attribute(MapperXmlKey.ATTRIBUTE_COLLECTION, "list"));
         foreach.getAttributes().add(1, new Attribute(MapperXmlKey.ATTRIBUTE_ITEM, "item"));
@@ -67,6 +69,7 @@ public class FindByIdsPlugin extends PluginAdapter {
         statement.addElement(select);
         statement.addElement(include);
         statement.addElement(from);
+        statement.addElement(where);
         statement.addElement(foreach);
 
         rootElement.addElement(statement);

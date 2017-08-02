@@ -43,7 +43,7 @@ public class DeleteByIdsPlugin extends PluginAdapter {
         statement.getAttributes().add(new Attribute(MapperXmlKey.ATTRIBUTE_PARAMETER_TYPE, StatementIdValue.JAVA_UTIL_LIST));
 
         TextElement delete = new TextElement("delete from");
-        TextElement student = new TextElement("student");
+        TextElement student = new TextElement(introspectedTable.getTableConfiguration().getTableName());
         TextElement where = new TextElement("where");
         TextElement idIn = new TextElement("id in");
 
