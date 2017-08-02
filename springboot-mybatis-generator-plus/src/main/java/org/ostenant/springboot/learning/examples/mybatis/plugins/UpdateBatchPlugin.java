@@ -47,7 +47,6 @@ public class UpdateBatchPlugin extends UseGeneratedKeysColumnPlugin {
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_PREFIX, "set"));
         trimSet.addAttribute(new Attribute(MapperXmlKey.ATTRIBUTE_SUFFIX_OVERRIDES, ","));
 
-        String secondaryLevelIdEqualsCondition = getEqualsCondition(introspectedTable.getPrimaryKeyColumns().get(0), false);
         String secondaryLevelIdEqualsResult = getEqualsResult(introspectedTable.getPrimaryKeyColumns().get(0), false);
 
         List<IntrospectedColumn> nonPrimaryKeyColumns = introspectedTable.getNonPrimaryKeyColumns();
