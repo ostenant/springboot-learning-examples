@@ -53,6 +53,9 @@
         <!-- 配置插入时自动生成主键的插件 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.UseGeneratedKeysColumnPlugin"/>
 
+        <!-- 配置生成findAll()方法和sql查询statement的插件 -->
+        <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FindAllPlugin"/>
+
         <!-- 配置生成findByIds()方法和sql查询statement的插件 -->
         <plugin type="org.ostenant.springboot.learning.examples.mybatis.plugins.FindByIdsPlugin"/>
 

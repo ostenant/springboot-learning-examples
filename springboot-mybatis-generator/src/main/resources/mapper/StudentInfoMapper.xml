@@ -8,36 +8,25 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="student_id" jdbcType="INTEGER" property="studentId" />
   </resultMap>
-
-
   <sql id="Base_Column_List">
     id, age, address, email, student_id
   </sql>
-
-
   <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from student_info
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from student_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
-
-  <insert id="save" keyColumn="id" keyProperty="id"
-          parameterType="org.ostenant.springboot.learning.examples.model.StudentInfo" useGeneratedKeys="true">
+  <insert id="save" keyColumn="id" keyProperty="id" parameterType="org.ostenant.springboot.learning.examples.model.StudentInfo" useGeneratedKeys="true">
     insert into student_info (id, age, address, 
       email, student_id)
     values (#{id,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{studentId,jdbcType=INTEGER})
   </insert>
-
-
   <update id="update" parameterType="org.ostenant.springboot.learning.examples.model.StudentInfo">
     update student_info
     <set>
@@ -56,25 +45,19 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-
   <select id="findAll" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from student_info
   </select>
-
-
   <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from student_info
     <foreach close=")" collection="list" item="item" open="(" separator=",">
       #{item,jdbcType=INTEGER}
     </foreach>
   </select>
-
-
   <delete id="deleteByIds" parameterType="java.util.List">
     delete from
     student
@@ -84,20 +67,15 @@
       #{item,jdbcType=INTEGER}
     </foreach>
   </delete>
-
-
   <insert id="saveBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
     insert into
     student_info
     (id, age, address, email, student_id)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=INTEGER}, #{item.age,jdbcType=INTEGER}, #{item.address,jdbcType=VARCHAR},
-      #{item.email,jdbcType=VARCHAR}, #{item.studentId,jdbcType=INTEGER})
+      (#{item.id,jdbcType=INTEGER}, #{item.age,jdbcType=INTEGER}, #{item.address,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.studentId,jdbcType=INTEGER})
     </foreach>
   </insert>
-
-
   <update id="updateBatch" parameterType="java.util.List">
     update student_info
     <trim prefix="set" suffixOverrides=",">
@@ -135,6 +113,4 @@
       id = #{id,jdbcType=INTEGER}
     </foreach>
   </update>
-
-
 </mapper>

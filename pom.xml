@@ -13,9 +13,10 @@
         <module>springboot-properties</module>
         <module>springboot-mybatis-generator</module>
         <module>springboot-mybatis-generator-plus</module>
-        <module>springboot-mybatis-xml</module>
         <module>springboot-mybatis-annotation</module>
+        <module>springboot-mybatis-xml</module>
         <module>springboot-mybatis-mixedtype</module>
+        <module>springboot-mybatis-pagehelper</module>
         <module>springboot-mybatis-multi-datasource</module>
     </modules>
 

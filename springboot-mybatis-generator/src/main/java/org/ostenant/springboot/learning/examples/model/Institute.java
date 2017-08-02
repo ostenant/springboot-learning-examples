@@ -1,10 +1,9 @@
 package org.ostenant.springboot.learning.examples.model;
 
 import com.alibaba.fastjson.JSONObject;
-import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
 
 public class Institute implements Serializable {
     /**
@@ -77,7 +76,7 @@ public class Institute implements Serializable {
     }
 
     public static Institute fromJson(JSONObject fromJsonObj) {
-        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()){
             return null;
         }
         Institute institute = new Institute();

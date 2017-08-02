@@ -8,6 +8,11 @@ public final class StatementIdValue {
     public static final String STATEMENT_FIND_BY_IDS = "findByIds";
 
     /**
+     * Statement ID VALUE (findAll)
+     */
+    public static final String STATEMENT_FIND_ALL = "findAll";
+
+    /**
      * Statement ID VALUE (deleteByIds)
      */
     public static final String STATEMENT_DELETE_BY_IDS = "deleteByIds";

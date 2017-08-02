@@ -5,43 +5,35 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, name
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+
+  <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from institute
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
     delete from institute
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.ostenant.springboot.learning.examples.model.Institute">
+
+
+  <insert id="save" keyColumn="id" keyProperty="id"
+          parameterType="org.ostenant.springboot.learning.examples.model.Institute" useGeneratedKeys="true">
     insert into institute (id, name)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.ostenant.springboot.learning.examples.model.Institute">
-    insert into institute
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.ostenant.springboot.learning.examples.model.Institute">
+
+
+  <update id="update" parameterType="org.ostenant.springboot.learning.examples.model.Institute">
     update institute
     <set>
       <if test="name != null">
@@ -50,18 +42,62 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.ostenant.springboot.learning.examples.model.Institute">
-    update institute
-    set name = #{name,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 
-  <insert id="saveBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO institute
-    (NAME)
-    VALUES
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from institute
+  </select>
+
+
+  <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from institute
+    <foreach close=")" collection="list" item="item" open="(" separator=",">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </select>
+
+
+  <delete id="deleteByIds" parameterType="java.util.List">
+    delete from
+    student
+    where
+    id in
+    <foreach close=")" collection="list" item="item" open="(" separator=",">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+
+
+  <insert id="saveBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into
+    institute
+    (id, name)
+    values
     <foreach collection="list" item="item" separator=",">
-      (#{item.name,jdbcType=VARCHAR})
+      (#{item.id,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR})
     </foreach>
   </insert>
+
+
+  <update id="updateBatch" parameterType="java.util.List">
+    update institute
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where
+    <foreach collection="list" item="item" separator=", ">
+      id = #{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+
 </mapper>

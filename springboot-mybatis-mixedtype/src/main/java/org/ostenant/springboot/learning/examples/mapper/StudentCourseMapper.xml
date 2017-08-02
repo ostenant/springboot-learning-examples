@@ -7,9 +7,13 @@
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
     <result column="score" jdbcType="DOUBLE" property="score" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, student_id, course_id, score
   </sql>
+
+
   <insert id="insertSelective" parameterType="org.ostenant.springboot.learning.examples.model.StudentCourse">
     insert into student_course
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -41,6 +45,8 @@
       </if>
     </trim>
   </insert>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="org.ostenant.springboot.learning.examples.model.StudentCourse">
     update student_course
     <set>
@@ -56,4 +62,6 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

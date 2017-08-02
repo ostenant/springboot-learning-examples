@@ -10,18 +10,21 @@ import java.util.List;
 @Repository
 public interface InstituteMapper {
 
-    int deleteByPrimaryKey(Integer id);
+    Institute findById(Integer id);
 
-    int insert(Institute record);
+    List<Institute> findByIds(List<Integer> list);
 
-    int insertSelective(Institute record);
+    List<Institute> findAll();
 
-    Institute selectByPrimaryKey(Integer id);
+    int deleteById(Integer id);
 
-    int updateByPrimaryKeySelective(Institute record);
+    int deleteByIds(List<Integer> list);
 
-    int updateByPrimaryKey(Institute record);
+    int save(Institute record);
 
     int saveBatch(List<Institute> list);
 
+    int update(Institute record);
+
+    int updateBatch(List<Institute> list);
 }

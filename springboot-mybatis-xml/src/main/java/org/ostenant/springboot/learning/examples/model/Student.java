@@ -1,19 +1,35 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Student implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * 主键ID
+     */
     private Integer id;
 
+    /**
+     * 学生姓名
+     */
     private String name;
 
+    /**
+     * 学生年级
+     */
     private String grade;
 
+    /**
+     * 班级
+     */
     private String classNumber;
 
+    /**
+     * 学院ID
+     */
     private Integer instituteId;
 
     public Integer getId() {
@@ -25,17 +41,17 @@ public class Student implements Serializable {
         return this;
     }
 
-    public Student withName(String name) {
-        this.setName(name);
-        return this;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Student withName(String name) {
+        this.setName(name);
+        return this;
     }
 
     public void setName(String name) {
@@ -82,6 +98,21 @@ public class Student implements Serializable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", grade=").append(grade);
+        sb.append(", classNumber=").append(classNumber);
+        sb.append(", instituteId=").append(instituteId);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -102,29 +133,56 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getGrade() == null) ? 0 : getGrade().hashCode());
-        result = prime * result + ((getClassNumber() == null) ? 0 : getClassNumber().hashCode());
-        result = prime * result + ((getInstituteId() == null) ? 0 : getInstituteId().hashCode());
-        return result;
+        return Objects.hash(id, name, grade, classNumber, instituteId);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", grade=").append(grade);
-        sb.append(", classNumber=").append(classNumber);
-        sb.append(", instituteId=").append(instituteId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public static Student fromJson(JSONObject fromJsonObj) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+            return null;
+        }
+        Student student = new Student();
+        student.setId(JSONAttrGetter.getInteger(fromJsonObj, StudentKey.ID));
+        student.setName(JSONAttrGetter.getString(fromJsonObj, StudentKey.NAME));
+        student.setGrade(JSONAttrGetter.getString(fromJsonObj, StudentKey.GRADE));
+        student.setClassNumber(JSONAttrGetter.getString(fromJsonObj, StudentKey.CLASS_NUMBER));
+        student.setInstituteId(JSONAttrGetter.getInteger(fromJsonObj, StudentKey.INSTITUTE_ID));
+        return student;
+    }
+
+    public JSONObject toJson() {
+        JSONObject toJsonObj = new JSONObject();
+        toJsonObj.put(StudentKey.ID, id);
+        toJsonObj.put(StudentKey.NAME, name);
+        toJsonObj.put(StudentKey.GRADE, grade);
+        toJsonObj.put(StudentKey.CLASS_NUMBER, classNumber);
+        toJsonObj.put(StudentKey.INSTITUTE_ID, instituteId);
+        return toJsonObj;
+    }
+
+    public static final class StudentKey {
+        /**
+         * 主键ID
+         */
+        public static final String ID = "id";
+
+        /**
+         * 学生姓名
+         */
+        public static final String NAME = "name";
+
+        /**
+         * 学生年级
+         */
+        public static final String GRADE = "grade";
+
+        /**
+         * 班级
+         */
+        public static final String CLASS_NUMBER = "class_number";
+
+        /**
+         * 学院ID
+         */
+        public static final String INSTITUTE_ID = "institute_id";
     }
 }

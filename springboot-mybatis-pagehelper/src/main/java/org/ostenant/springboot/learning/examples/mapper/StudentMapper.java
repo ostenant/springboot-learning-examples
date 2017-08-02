@@ -1,18 +1,30 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.ostenant.springboot.learning.examples.model.Student;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Mapper
+@Repository
 public interface StudentMapper {
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteById(Integer id);
 
-    int insert(Student record);
+    int deleteByIds(List<Integer> list);
 
-    int insertSelective(Student record);
+    Student findById(Integer id);
 
-    Student selectByPrimaryKey(Integer id);
+    List<Student> findByIds(List<Integer> list);
 
-    int updateByPrimaryKeySelective(Student record);
+    List<Student> findAll();
 
-    int updateByPrimaryKey(Student record);
+    int save(Student record);
+
+    int saveBatch(List<Student> list);
+
+    int update(Student record);
+
+    int updateBatch(List<Student> list);
 }

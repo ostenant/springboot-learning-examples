@@ -1,29 +1,28 @@
 package org.ostenant.springboot.learning.examples.model;
 
 import com.alibaba.fastjson.JSONObject;
-import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
 
 public class StudentCourse implements Serializable {
     /**
-     *
+     * 
      */
     private Integer id;
 
     /**
-     *
+     * 
      */
     private Integer studentId;
 
     /**
-     *
+     * 
      */
     private Integer courseId;
 
     /**
-     *
+     * 
      */
     private Double score;
 
@@ -117,7 +116,7 @@ public class StudentCourse implements Serializable {
     }
 
     public static StudentCourse fromJson(JSONObject fromJsonObj) {
-        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()){
             return null;
         }
         StudentCourse studentCourse = new StudentCourse();
@@ -139,22 +138,22 @@ public class StudentCourse implements Serializable {
 
     public static final class StudentCourseKey {
         /**
-         *
+         * 
          */
         public static final String ID = "id";
 
         /**
-         *
+         * 
          */
         public static final String STUDENT_ID = "student_id";
 
         /**
-         *
+         * 
          */
         public static final String COURSE_ID = "course_id";
 
         /**
-         *
+         * 
          */
         public static final String SCORE = "score";
     }
