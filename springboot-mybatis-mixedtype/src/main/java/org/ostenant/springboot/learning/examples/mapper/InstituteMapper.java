@@ -1,42 +1,44 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.ostenant.springboot.learning.examples.model.Institute;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Mapper
+@Repository
 public interface InstituteMapper {
     @Delete({
-        "delete from institute",
-        "where id = #{id,jdbcType=INTEGER}"
+            "delete from institute",
+            "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(Integer id);
+    int deleteById(Integer id);
 
     @Insert({
-        "insert into institute (id, name)",
-        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})"
+            "insert into institute (id, name)",
+            "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})"
     })
-    int insert(Institute record);
-
-    int insertSelective(Institute record);
+    int save(Institute record);
 
     @Select({
-        "select",
-        "id, name",
-        "from institute",
-        "where id = #{id,jdbcType=INTEGER}"
+            "select",
+            "id, name",
+            "from institute",
+            "where id = #{id,jdbcType=INTEGER}"
     })
     @ResultMap("org.ostenant.springboot.learning.examples.mapper.InstituteMapper.BaseResultMap")
-    Institute selectByPrimaryKey(Integer id);
+    Institute findById(Integer id);
 
-    int updateByPrimaryKeySelective(Institute record);
+    int update(Institute record);
 
-    @Update({
-        "update institute",
-        "set name = #{name,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=INTEGER}"
-    })
-    int updateByPrimaryKey(Institute record);
+    List<Institute> findAll();
+
+    List<Institute> findByIds(List<Integer> list);
+
+    int deleteByIds(List<Integer> list);
+
+    int saveBatch(List<Institute> list);
+
+    int updateBatch(List<Institute> list);
 }

@@ -1,17 +1,30 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class StudentCourse implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     *
+     */
     private Integer id;
 
+    /**
+     *
+     */
     private Integer studentId;
 
+    /**
+     *
+     */
     private Integer courseId;
 
+    /**
+     *
+     */
     private Double score;
 
     public Integer getId() {
@@ -23,17 +36,17 @@ public class StudentCourse implements Serializable {
         return this;
     }
 
-    public StudentCourse withStudentId(Integer studentId) {
-        this.setStudentId(studentId);
-        return this;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
     public Integer getStudentId() {
         return studentId;
+    }
+
+    public StudentCourse withStudentId(Integer studentId) {
+        this.setStudentId(studentId);
+        return this;
     }
 
     public void setStudentId(Integer studentId) {
@@ -67,6 +80,20 @@ public class StudentCourse implements Serializable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", studentId=").append(studentId);
+        sb.append(", courseId=").append(courseId);
+        sb.append(", score=").append(score);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -86,27 +113,49 @@ public class StudentCourse implements Serializable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getStudentId() == null) ? 0 : getStudentId().hashCode());
-        result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
-        result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
-        return result;
+        return Objects.hash(id, studentId, courseId, score);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", studentId=").append(studentId);
-        sb.append(", courseId=").append(courseId);
-        sb.append(", score=").append(score);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public static StudentCourse fromJson(JSONObject fromJsonObj) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+            return null;
+        }
+        StudentCourse studentCourse = new StudentCourse();
+        studentCourse.setId(JSONAttrGetter.getInteger(fromJsonObj, StudentCourseKey.ID));
+        studentCourse.setStudentId(JSONAttrGetter.getInteger(fromJsonObj, StudentCourseKey.STUDENT_ID));
+        studentCourse.setCourseId(JSONAttrGetter.getInteger(fromJsonObj, StudentCourseKey.COURSE_ID));
+        studentCourse.setScore(JSONAttrGetter.getDouble(fromJsonObj, StudentCourseKey.SCORE));
+        return studentCourse;
+    }
+
+    public JSONObject toJson() {
+        JSONObject toJsonObj = new JSONObject();
+        toJsonObj.put(StudentCourseKey.ID, id);
+        toJsonObj.put(StudentCourseKey.STUDENT_ID, studentId);
+        toJsonObj.put(StudentCourseKey.COURSE_ID, courseId);
+        toJsonObj.put(StudentCourseKey.SCORE, score);
+        return toJsonObj;
+    }
+
+    public static final class StudentCourseKey {
+        /**
+         *
+         */
+        public static final String ID = "id";
+
+        /**
+         *
+         */
+        public static final String STUDENT_ID = "student_id";
+
+        /**
+         *
+         */
+        public static final String COURSE_ID = "course_id";
+
+        /**
+         *
+         */
+        public static final String SCORE = "score";
     }
 }

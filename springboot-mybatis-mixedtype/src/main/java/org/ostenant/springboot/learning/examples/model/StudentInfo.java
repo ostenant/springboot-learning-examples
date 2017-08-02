@@ -1,19 +1,35 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class StudentInfo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     *
+     */
     private Integer id;
 
+    /**
+     *
+     */
     private Integer age;
 
+    /**
+     *
+     */
     private String address;
 
+    /**
+     *
+     */
     private String email;
 
+    /**
+     *
+     */
     private Integer studentId;
 
     public Integer getId() {
@@ -25,17 +41,17 @@ public class StudentInfo implements Serializable {
         return this;
     }
 
-    public StudentInfo withAge(Integer age) {
-        this.setAge(age);
-        return this;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
     public Integer getAge() {
         return age;
+    }
+
+    public StudentInfo withAge(Integer age) {
+        this.setAge(age);
+        return this;
     }
 
     public void setAge(Integer age) {
@@ -82,6 +98,21 @@ public class StudentInfo implements Serializable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", age=").append(age);
+        sb.append(", address=").append(address);
+        sb.append(", email=").append(email);
+        sb.append(", studentId=").append(studentId);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -102,29 +133,56 @@ public class StudentInfo implements Serializable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getAge() == null) ? 0 : getAge().hashCode());
-        result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
-        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-        result = prime * result + ((getStudentId() == null) ? 0 : getStudentId().hashCode());
-        return result;
+        return Objects.hash(id, age, address, email, studentId);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", age=").append(age);
-        sb.append(", address=").append(address);
-        sb.append(", email=").append(email);
-        sb.append(", studentId=").append(studentId);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public static StudentInfo fromJson(JSONObject fromJsonObj) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+            return null;
+        }
+        StudentInfo studentInfo = new StudentInfo();
+        studentInfo.setId(JSONAttrGetter.getInteger(fromJsonObj, StudentInfoKey.ID));
+        studentInfo.setAge(JSONAttrGetter.getInteger(fromJsonObj, StudentInfoKey.AGE));
+        studentInfo.setAddress(JSONAttrGetter.getString(fromJsonObj, StudentInfoKey.ADDRESS));
+        studentInfo.setEmail(JSONAttrGetter.getString(fromJsonObj, StudentInfoKey.EMAIL));
+        studentInfo.setStudentId(JSONAttrGetter.getInteger(fromJsonObj, StudentInfoKey.STUDENT_ID));
+        return studentInfo;
+    }
+
+    public JSONObject toJson() {
+        JSONObject toJsonObj = new JSONObject();
+        toJsonObj.put(StudentInfoKey.ID, id);
+        toJsonObj.put(StudentInfoKey.AGE, age);
+        toJsonObj.put(StudentInfoKey.ADDRESS, address);
+        toJsonObj.put(StudentInfoKey.EMAIL, email);
+        toJsonObj.put(StudentInfoKey.STUDENT_ID, studentId);
+        return toJsonObj;
+    }
+
+    public static final class StudentInfoKey {
+        /**
+         *
+         */
+        public static final String ID = "id";
+
+        /**
+         *
+         */
+        public static final String AGE = "age";
+
+        /**
+         *
+         */
+        public static final String ADDRESS = "address";
+
+        /**
+         *
+         */
+        public static final String EMAIL = "email";
+
+        /**
+         *
+         */
+        public static final String STUDENT_ID = "student_id";
     }
 }

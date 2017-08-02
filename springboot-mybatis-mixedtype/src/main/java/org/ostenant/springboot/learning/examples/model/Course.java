@@ -1,17 +1,30 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Course implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * 主键ID
+     */
     private Integer id;
 
+    /**
+     * 课程名称
+     */
     private String name;
 
+    /**
+     * 课程时间
+     */
     private Double lessonPeriod;
 
+    /**
+     * 课程分数
+     */
     private Double score;
 
     public Integer getId() {
@@ -23,17 +36,17 @@ public class Course implements Serializable {
         return this;
     }
 
-    public Course withName(String name) {
-        this.setName(name);
-        return this;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public Course withName(String name) {
+        this.setName(name);
+        return this;
     }
 
     public void setName(String name) {
@@ -67,6 +80,20 @@ public class Course implements Serializable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", lessonPeriod=").append(lessonPeriod);
+        sb.append(", score=").append(score);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
@@ -86,27 +113,49 @@ public class Course implements Serializable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getLessonPeriod() == null) ? 0 : getLessonPeriod().hashCode());
-        result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
-        return result;
+        return Objects.hash(id, name, lessonPeriod, score);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", lessonPeriod=").append(lessonPeriod);
-        sb.append(", score=").append(score);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public static Course fromJson(JSONObject fromJsonObj) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+            return null;
+        }
+        Course course = new Course();
+        course.setId(JSONAttrGetter.getInteger(fromJsonObj, CourseKey.ID));
+        course.setName(JSONAttrGetter.getString(fromJsonObj, CourseKey.NAME));
+        course.setLessonPeriod(JSONAttrGetter.getDouble(fromJsonObj, CourseKey.LESSON_PERIOD));
+        course.setScore(JSONAttrGetter.getDouble(fromJsonObj, CourseKey.SCORE));
+        return course;
+    }
+
+    public JSONObject toJson() {
+        JSONObject toJsonObj = new JSONObject();
+        toJsonObj.put(CourseKey.ID, id);
+        toJsonObj.put(CourseKey.NAME, name);
+        toJsonObj.put(CourseKey.LESSON_PERIOD, lessonPeriod);
+        toJsonObj.put(CourseKey.SCORE, score);
+        return toJsonObj;
+    }
+
+    public static final class CourseKey {
+        /**
+         * 主键ID
+         */
+        public static final String ID = "id";
+
+        /**
+         * 课程名称
+         */
+        public static final String NAME = "name";
+
+        /**
+         * 课程时间
+         */
+        public static final String LESSON_PERIOD = "lesson_period";
+
+        /**
+         * 课程分数
+         */
+        public static final String SCORE = "score";
     }
 }

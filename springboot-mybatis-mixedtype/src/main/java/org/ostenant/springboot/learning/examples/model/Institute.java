@@ -1,13 +1,20 @@
 package org.ostenant.springboot.learning.examples.model;
 
+import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Institute implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * 主键ID
+     */
     private Integer id;
 
+    /**
+     * 学院名称
+     */
     private String name;
 
     public Integer getId() {
@@ -19,11 +26,6 @@ public class Institute implements Serializable {
         return this;
     }
 
-    public Institute withName(String name) {
-        this.setName(name);
-        return this;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -32,8 +34,25 @@ public class Institute implements Serializable {
         return name;
     }
 
+    public Institute withName(String name) {
+        this.setName(name);
+        return this;
+    }
+
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append("]");
+        return sb.toString();
     }
 
     @Override
@@ -54,23 +73,35 @@ public class Institute implements Serializable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        return result;
+        return Objects.hash(id, name);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public static Institute fromJson(JSONObject fromJsonObj) {
+        if (fromJsonObj == null || fromJsonObj.isEmpty()) {
+            return null;
+        }
+        Institute institute = new Institute();
+        institute.setId(JSONAttrGetter.getInteger(fromJsonObj, InstituteKey.ID));
+        institute.setName(JSONAttrGetter.getString(fromJsonObj, InstituteKey.NAME));
+        return institute;
+    }
+
+    public JSONObject toJson() {
+        JSONObject toJsonObj = new JSONObject();
+        toJsonObj.put(InstituteKey.ID, id);
+        toJsonObj.put(InstituteKey.NAME, name);
+        return toJsonObj;
+    }
+
+    public static final class InstituteKey {
+        /**
+         * 主键ID
+         */
+        public static final String ID = "id";
+
+        /**
+         * 学院名称
+         */
+        public static final String NAME = "name";
     }
 }

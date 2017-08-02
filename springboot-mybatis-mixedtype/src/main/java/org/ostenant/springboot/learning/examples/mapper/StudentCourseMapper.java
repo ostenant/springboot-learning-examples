@@ -1,46 +1,46 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.ostenant.springboot.learning.examples.model.StudentCourse;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Mapper
+@Repository
 public interface StudentCourseMapper {
     @Delete({
-        "delete from student_course",
-        "where id = #{id,jdbcType=INTEGER}"
+            "delete from student_course",
+            "where id = #{id,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(Integer id);
+    int deleteById(Integer id);
 
     @Insert({
-        "insert into student_course (id, student_id, ",
-        "course_id, score)",
-        "values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, ",
-        "#{courseId,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE})"
+            "insert into student_course (id, student_id, ",
+            "course_id, score)",
+            "values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, ",
+            "#{courseId,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE})"
     })
-    int insert(StudentCourse record);
-
-    int insertSelective(StudentCourse record);
+    int save(StudentCourse record);
 
     @Select({
-        "select",
-        "id, student_id, course_id, score",
-        "from student_course",
-        "where id = #{id,jdbcType=INTEGER}"
+            "select",
+            "id, student_id, course_id, score",
+            "from student_course",
+            "where id = #{id,jdbcType=INTEGER}"
     })
     @ResultMap("org.ostenant.springboot.learning.examples.mapper.StudentCourseMapper.BaseResultMap")
-    StudentCourse selectByPrimaryKey(Integer id);
+    StudentCourse findById(Integer id);
 
-    int updateByPrimaryKeySelective(StudentCourse record);
+    int update(StudentCourse record);
 
-    @Update({
-        "update student_course",
-        "set student_id = #{studentId,jdbcType=INTEGER},",
-          "course_id = #{courseId,jdbcType=INTEGER},",
-          "score = #{score,jdbcType=DOUBLE}",
-        "where id = #{id,jdbcType=INTEGER}"
-    })
-    int updateByPrimaryKey(StudentCourse record);
+    List<StudentCourse> findAll();
+
+    List<StudentCourse> findByIds(List<Integer> list);
+
+    int deleteByIds(List<Integer> list);
+
+    int saveBatch(List<StudentCourse> list);
+
+    int updateBatch(List<StudentCourse> list);
 }
