@@ -5,5 +5,5 @@ spring:
     username: root
     password: root
 mybatis:
-  type-aliases-package: org.ostenant.springboot.learning.examples.model
+  type-aliases-package: org.ostenant.springboot.learning.examples.page.model
   mapper-locations: mapper/*.xml

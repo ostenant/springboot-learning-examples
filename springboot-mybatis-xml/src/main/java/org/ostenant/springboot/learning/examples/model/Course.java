@@ -8,22 +8,22 @@ import java.util.Objects;
 
 public class Course implements Serializable {
     /**
-     *
+     * 主键ID
      */
     private Integer id;
 
     /**
-     *
+     * 课程名称
      */
     private String name;
 
     /**
-     *
+     * 课程时间
      */
     private Double lessonPeriod;
 
     /**
-     *
+     * 课程分数
      */
     private Double score;
 

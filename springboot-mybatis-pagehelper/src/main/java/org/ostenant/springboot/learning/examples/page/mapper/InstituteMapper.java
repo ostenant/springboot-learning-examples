@@ -1,9 +1,14 @@
-package org.ostenant.springboot.learning.examples.mapper;
+package org.ostenant.springboot.learning.examples.page.mapper;
 
-import org.ostenant.springboot.learning.examples.model.Institute;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.ostenant.springboot.learning.examples.page.model.Institute;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Mapper
+@Repository
 public interface InstituteMapper {
 
     int deleteById(Integer id);

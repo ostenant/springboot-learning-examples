@@ -1,9 +1,11 @@
 package org.ostenant.springboot.learning.examples.mapper;
 
-import java.util.List;
 import org.ostenant.springboot.learning.examples.model.StudentCourse;
 
+import java.util.List;
+
 public interface StudentCourseMapper {
+
     int deleteById(Integer id);
 
     int save(StudentCourse record);

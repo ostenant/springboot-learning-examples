@@ -27,19 +27,14 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<Institute> list = new ArrayList<>();
-
-        list.add(new Institute().withName("建筑学院"));
-        list.add(new Institute().withName("数学学院"));
-        list.add(new Institute().withName("机械学院"));
-        list.add(new Institute().withName("金融学院"));
-        instituteMapper.saveBatch(list);
-        list.stream()
-                .map(Institute::getId)
-                .forEach(System.out::println);
-
-        PageHelper.startPage(1, 10);
-        instituteMapper.findAll().stream().forEach(System.out::println);
-
+//        List<Institute> list = new ArrayList<>();
+//        list.add(new Institute().withName("建筑学院"));
+//        list.add(new Institute().withName("数学学院"));
+//        list.add(new Institute().withName("机械学院"));
+//        list.add(new Institute().withName("金融学院"));
+//        instituteMapper.saveBatch(list);
+//        list.stream()
+//                .map(Institute::getId)
+//                .forEach(System.out::println);
     }
 }

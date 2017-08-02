@@ -1,28 +1,29 @@
 package org.ostenant.springboot.learning.examples.model;
 
 import com.alibaba.fastjson.JSONObject;
+import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
+
 import java.io.Serializable;
 import java.util.Objects;
-import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;
 
 public class Course implements Serializable {
     /**
-     * 
+     * 主键ID
      */
     private Integer id;
 
     /**
-     * 
+     * 课程名称
      */
     private String name;
 
     /**
-     * 
+     * 课程时间
      */
     private Double lessonPeriod;
 
     /**
-     * 
+     * 课程分数
      */
     private Double score;
 

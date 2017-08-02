@@ -1,5 +1,4 @@
-package org.ostenant.springboot.learning.examples.page;
-
+package org.ostenant.springboot.learning.examples.page.config;
 
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.plugin.Interceptor;
@@ -9,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
@@ -19,14 +17,14 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-public class DataSourceConfig implements TransactionManagementConfigurer {
+public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Autowired
     private DataSource dataSource;
 
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new DataSourceTransactionManager(dataSource);
+        return null;
     }
 
     @Bean(name = "sqlSessionFactory")
@@ -34,7 +32,7 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         //自定义数据库配置的时候，需要将pageHelper的bean注入到Plugins中，如果采用系统默认的数据库配置，则只需要定义pageHelper的bean，会自动注入。
-        bean.setPlugins(new Interceptor[] { pageHelper });
+        bean.setPlugins(new Interceptor[]{pageHelper});
 
         try {
             return bean.getObject();
@@ -50,13 +48,12 @@ public class DataSourceConfig implements TransactionManagementConfigurer {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
-
     @Bean
     public PageHelper pageHelper() {
         PageHelper pageHelper = new PageHelper();
         Properties p = new Properties();
-        p.setProperty("offsetAsPageNum", "true");
         p.setProperty("rowBoundsWithCount", "true");
+        p.setProperty("offsetAsPageNum", "true");
         p.setProperty("reasonable", "true");
         p.setProperty("dialect", "mysql");
         pageHelper.setProperties(p);
