@@ -1,7 +1,7 @@
-package org.ostenant.springboot.learning.examples.mapper;
+package org.ostenant.springboot.learning.examples.page.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.ostenant.springboot.learning.examples.model.Student;
+import org.ostenant.springboot.learning.examples.page.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

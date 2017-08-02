@@ -1,4 +1,4 @@
-package org.ostenant.springboot.learning.examples.model;
+package org.ostenant.springboot.learning.examples.page.model;
 
 import com.alibaba.fastjson.JSONObject;
 import org.ostenant.springboot.learning.examples.mybatis.utils.JSONAttrGetter;

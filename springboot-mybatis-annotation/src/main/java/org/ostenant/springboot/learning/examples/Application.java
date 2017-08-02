@@ -1,5 +1,6 @@
 package org.ostenant.springboot.learning.examples;
 
+import com.github.pagehelper.PageHelper;
 import org.ostenant.springboot.learning.examples.mapper.InstituteMapper;
 import org.ostenant.springboot.learning.examples.model.Institute;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,9 @@ public class Application implements CommandLineRunner {
         list.stream()
                 .map(Institute::getId)
                 .forEach(System.out::println);
+
+        PageHelper.startPage(1, 10);
+        instituteMapper.findAll().stream().forEach(System.out::println);
+
     }
 }

@@ -1,8 +1,8 @@
 package org.ostenant.springboot.learning.examples;
 
 import com.github.pagehelper.PageHelper;
-import org.ostenant.springboot.learning.examples.mapper.StudentMapper;
-import org.ostenant.springboot.learning.examples.model.Student;
+import org.ostenant.springboot.learning.examples.page.mapper.StudentMapper;
+import org.ostenant.springboot.learning.examples.page.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +26,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        PageHelper.startPage(0, 5);
+        PageHelper.startPage(0, 2);
         List<Student> students = studentMapper.findAll();
         students.forEach(System.out::println);
     }

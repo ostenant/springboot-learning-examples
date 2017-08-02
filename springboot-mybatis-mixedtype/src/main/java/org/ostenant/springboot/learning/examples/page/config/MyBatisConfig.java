@@ -1,4 +1,4 @@
-package org.ostenant.springboot.learning.examples.config;
+package org.ostenant.springboot.learning.examples.page.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

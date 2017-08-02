@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ostenant.springboot.learning.examples.mapper.StudentMapper">
-  <resultMap id="BaseResultMap" type="org.ostenant.springboot.learning.examples.model.Student">
+<mapper namespace="org.ostenant.springboot.learning.examples.page.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="org.ostenant.springboot.learning.examples.page.model.Student">
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="grade" jdbcType="VARCHAR" property="grade"/>
@@ -30,7 +30,7 @@
 
 
   <insert id="save" keyColumn="id" keyProperty="id"
-          parameterType="org.ostenant.springboot.learning.examples.model.Student" useGeneratedKeys="true">
+          parameterType="org.ostenant.springboot.learning.examples.page.model.Student" useGeneratedKeys="true">
     insert into student (id, name, grade,
     class_number, institute_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
@@ -38,7 +38,7 @@
   </insert>
 
 
-  <update id="update" parameterType="org.ostenant.springboot.learning.examples.model.Student">
+  <update id="update" parameterType="org.ostenant.springboot.learning.examples.page.model.Student">
     update student
     <set>
       <if test="name != null">
