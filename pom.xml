@@ -19,6 +19,7 @@
         <module>springboot-mybatis-mixedtype</module>
         <module>springboot-mybatis-pagehelper</module>
         <module>springboot-mybatis-multi-datasource</module>
+        <module>springboot-restful-api</module>
     </modules>
 
 </project>
