@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>springboot-actuator</module>
         <module>springboot-helloworld</module>
         <module>springboot-properties</module>
         <module>springboot-mybatis-generator</module>
