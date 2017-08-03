@@ -43,12 +43,12 @@ public class UserController {
     }
 
     @PostMapping("/api/user")
-    public ResponseEntity<?> save(User e) {
-        final Long affectRows = userService.save(e);
+    public ResponseEntity<?> save(@RequestBody User user) {
+        final Long affectRows = userService.save(user);
         final URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(e.getId())
+                .buildAndExpand(user.getId())
                 .toUri();
 
         return ResponseEntity

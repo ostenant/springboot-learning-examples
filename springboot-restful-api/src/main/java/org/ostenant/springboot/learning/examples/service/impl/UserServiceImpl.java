@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private static List<User> userList = new ArrayList<>();
+    private static volatile Long serial = 1L;
 
     @Override
     public Optional<List<User>> findAll() {
@@ -23,12 +25,13 @@ public class UserServiceImpl implements UserService {
         Map<Long, Set<User>> result = userList.stream().collect(
                 Collectors.groupingBy(User::getId, Collectors.toSet()));
         return result.containsKey(id) ?
-                Optional.ofNullable(result.get(id).stream().findFirst().get()) :
+                Optional.of(result.get(id).stream().findFirst().get()) :
                 Optional.empty();
     }
 
     @Override
     public Long save(User user) {
+        user.setId(serial++);
         userList.add(user);
         return 1L;
     }
@@ -38,15 +41,23 @@ public class UserServiceImpl implements UserService {
         Objects.requireNonNull(userList);
         Map<Long, Set<User>> result = userList.stream().collect(
                 Collectors.groupingBy(User::getId, Collectors.toSet()));
+
         if (result.containsKey(id)) {
-            result.remove(id);
-            userList = Arrays.asList(user);
-            userList.addAll(result.values()
-                    .stream()
-                    .reduce(Collections.EMPTY_SET, (u1Set, u2Set) -> {
-                        u1Set.addAll(u2Set);
-                        return new HashSet<User>(u1Set);
-                    }));
+            result.put(id, result.get(id).stream().map(u -> {
+                u.setUsername(user.getUsername());
+                u.setAccountName(user.getAccountName());
+                return u;
+            }).collect(Collectors.toSet()));
+
+            List<User> userList = result.values().stream()
+                    .flatMap(userSet ->
+                            userSet.stream()
+                                    .sorted((u1, u2) -> u1.getId() < u2.getId() ? 1 : -1)
+                                    .map(u -> Stream.of(u))
+                    ).map(userStream -> userStream.collect(Collectors.toList()))
+                    .map(list -> list.get(0))
+                    .collect(Collectors.toList());
+            userList.forEach(System.out::println);
             return 1L;
         } else {
             return 0L;
@@ -60,12 +71,14 @@ public class UserServiceImpl implements UserService {
                 Collectors.groupingBy(User::getId, Collectors.toSet()));
         if (result.containsKey(id)) {
             result.remove(id);
-            userList = new ArrayList<User>(result.values()
-                    .stream()
-                    .reduce(Collections.EMPTY_SET, (u1Set, u2Set) -> {
-                        u1Set.addAll(u2Set);
-                        return new HashSet<User>(u1Set);
-                    }));
+            userList = result.values().stream()
+                    .flatMap(userSet ->
+                            userSet.stream()
+                                    .sorted((u1, u2) -> u1.getId() < u2.getId() ? 1 : -1)
+                                    .map(u -> Stream.of(u))
+                    ).map(userStream -> userStream.collect(Collectors.toList()))
+                    .map(list -> list.get(0))
+                    .collect(Collectors.toList());
             return 1L;
         } else {
             return 0L;
@@ -78,8 +91,8 @@ public class UserServiceImpl implements UserService {
         Map<Long, Set<User>> result = userList.stream().collect(
                 Collectors.groupingBy(User::getId, Collectors.toSet()));
 
-        Long count = result.keySet().stream()
-                .filter(id -> result.containsKey(id))
+        Long count = ids.stream()
+                .filter(result::containsKey)
                 .map(id -> {
                     result.remove(id);
                     return result;
@@ -87,12 +100,15 @@ public class UserServiceImpl implements UserService {
 
 
         if (count > 0L) {
-            userList = new ArrayList<User>(result.values()
-                    .stream()
-                    .reduce(Collections.EMPTY_SET, (u1Set, u2Set) -> {
-                        u1Set.addAll(u2Set);
-                        return new HashSet<User>(u1Set);
-                    }));
+            userList = result.values().stream()
+                    .flatMap(userSet ->
+                            userSet.stream()
+                                    .sorted((u1, u2) -> u1.getId() < u2.getId() ? 1 : -1)
+                                    .map(u -> Stream.of(u))
+                    ).map(userStream -> userStream.collect(Collectors.toList()))
+                    .map(list -> list.get(0))
+                    .collect(Collectors.toList());
+            userList.forEach(System.out::println);
         }
         return count;
     }
