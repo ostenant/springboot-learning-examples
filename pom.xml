@@ -22,6 +22,7 @@
         <module>springboot-mybatis-pagehelper</module>
         <module>springboot-mybatis-multi-datasource</module>
         <module>springboot-restful-api</module>
+        <module>springboot-swagger2</module>
     </modules>
 
 </project>
