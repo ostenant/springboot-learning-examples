@@ -13,6 +13,7 @@
         <module>springboot-async</module>
         <module>springboot-exception-handler</module>
         <module>springboot-helloworld</module>
+        <module>springboot-lombok</module>
         <module>springboot-properties</module>
         <module>springboot-mybatis-generator</module>
         <module>springboot-mybatis-generator-plus</module>
