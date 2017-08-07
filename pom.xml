@@ -11,6 +11,7 @@
     <modules>
         <module>springboot-actuator</module>
         <module>springboot-async</module>
+        <module>springboot-data-jpa</module>
         <module>springboot-exception-handler</module>
         <module>springboot-helloworld</module>
         <module>springboot-lombok</module>
