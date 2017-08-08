@@ -25,6 +25,7 @@
         <module>springboot-mybatis-multi-datasource</module>
         <module>springboot-restful-api</module>
         <module>springboot-swagger2</module>
+        <module>springboot-jpa-hiberbate</module>
     </modules>
 
 </project>
