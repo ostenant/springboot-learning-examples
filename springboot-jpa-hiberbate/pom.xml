@@ -10,6 +10,7 @@
 
     <modules>
         <module>springboot-jpa-hibernate-crud</module>
+        <module>springboot-jpa-hibernate-onetomany</module>
     </modules>
 
     <name>springboot-jpa-hibernate</name>
