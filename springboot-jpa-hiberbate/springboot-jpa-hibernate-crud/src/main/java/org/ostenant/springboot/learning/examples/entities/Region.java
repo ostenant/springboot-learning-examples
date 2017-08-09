@@ -1,5 +1,8 @@
 package org.ostenant.springboot.learning.examples.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -17,7 +20,8 @@ public class Region implements Serializable {
     @Column(name = "region_name", nullable = false)
     private String regionName;
 
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "region", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     private Set<City> cities = new HashSet<>();
 
     public Region() {

@@ -18,9 +18,7 @@ public class City implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "region_id",
-            referencedColumnName = "id",
-            insertable = false,
-            updatable = false
+            referencedColumnName = "id"
     )
     private Region region;
 
@@ -61,7 +59,6 @@ public class City implements Serializable {
         return "City{" +
                 "id=" + id +
                 ", cityName='" + cityName + '\'' +
-                ", region=" + region +
                 '}';
     }
 }
