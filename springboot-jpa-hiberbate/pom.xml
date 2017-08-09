@@ -11,6 +11,7 @@
     <modules>
         <module>springboot-jpa-hibernate-crud</module>
         <module>springboot-jpa-hibernate-onetomany</module>
+        <module>springboot-jpa-hibernate-onetoone</module>
     </modules>
 
     <name>springboot-jpa-hibernate</name>

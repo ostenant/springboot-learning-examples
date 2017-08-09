@@ -17,9 +17,9 @@ public class Phone implements Serializable {
     @Column(name = "number", unique = true)
     private String number;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
+    @OneToOne
+    @JoinColumn(name = "phone_details_id", referencedColumnName = "id")
+    private PhoneDetails phoneDetails;
 
     public Phone() {
     }
@@ -44,11 +44,11 @@ public class Phone implements Serializable {
         this.number = number;
     }
 
-    public Person getPerson() {
-        return person;
+    public PhoneDetails getPhoneDetails() {
+        return phoneDetails;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPhoneDetails(PhoneDetails phoneDetails) {
+        this.phoneDetails = phoneDetails;
     }
 }
