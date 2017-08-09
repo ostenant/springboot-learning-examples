@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "t_person")
+@Table(name = "t_one_to_many_person")
 public class Person implements Serializable {
 
     @Id

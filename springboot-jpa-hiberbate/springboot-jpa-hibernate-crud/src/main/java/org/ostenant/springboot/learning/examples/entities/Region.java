@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_region")
+@Table(name = "t_crud_region")
 public class Region implements Serializable {
 
     @Id
