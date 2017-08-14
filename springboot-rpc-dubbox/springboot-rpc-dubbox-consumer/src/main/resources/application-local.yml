@@ -1,3 +1,9 @@
+server:
+  port: 33066
+  tomcat:
+    accesslog:
+      debug: true #请求响应数据调试
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -25,18 +31,3 @@ spring:
     testOnReturn: false
     # 配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
     filters: stat #, wall , log4j
-
-server:
-  port: 33060
-
-# 测试环境打印出数据库访问日志
-logging:
-  level:
-    root: INFO
-    org:
-      ostenant:
-        springboot:
-          learning:
-            examples:
-              serviceimpl: debug
-              mapper: debug

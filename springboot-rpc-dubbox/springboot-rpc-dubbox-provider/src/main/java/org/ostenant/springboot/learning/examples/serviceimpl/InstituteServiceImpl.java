@@ -14,8 +14,12 @@ import java.util.List;
 @Transactional
 public class InstituteServiceImpl implements InstituteService {
 
+    private final InstituteMapper instituteMapper;
+
     @Autowired
-    private InstituteMapper instituteMapper;
+    public InstituteServiceImpl(InstituteMapper instituteMapper) {
+        this.instituteMapper = instituteMapper;
+    }
 
     public int deleteById(Integer id) {
         return instituteMapper.deleteById(id);

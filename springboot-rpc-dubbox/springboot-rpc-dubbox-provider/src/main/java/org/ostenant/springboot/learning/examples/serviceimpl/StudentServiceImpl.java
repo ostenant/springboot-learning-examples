@@ -15,8 +15,12 @@ import java.util.List;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
+    private final StudentMapper studentMapper;
+
     @Autowired
-    private StudentMapper studentMapper;
+    public StudentServiceImpl(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
+    }
 
     public int deleteById(Integer id) {
         return studentMapper.deleteById(id);

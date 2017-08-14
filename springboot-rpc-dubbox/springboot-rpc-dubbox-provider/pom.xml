@@ -35,11 +35,13 @@
                 <dubbo.registry.protocol>zookeeper</dubbo.registry.protocol>
                 <dubbo.registry.address>127.0.0.1:2181</dubbo.registry.address>
                 <dubbo.registry.client>curator</dubbo.registry.client>
-                <dubbo.registry.file>tmp/springboot-rpc-dubbox-provider.cache</dubbo.registry.file>
+                <dubbo.registry.file>
+                    E://zookeeper-3.3.6//data//springboot-rpc-dubbox-provider.cache
+                </dubbo.registry.file>
                 <dubbo.protocol.dubbo.port>20000</dubbo.protocol.dubbo.port>
                 <dubbo.application.logger>slf4j</dubbo.application.logger>
                 <dubbo.logback.level>info</dubbo.logback.level>
-                <dubbo.monitor.protocol></dubbo.monitor.protocol>
+                <dubbo.monitor.protocol/>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

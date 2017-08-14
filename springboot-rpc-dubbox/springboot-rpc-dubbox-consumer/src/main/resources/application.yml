@@ -1,2 +1,5 @@
-server:
-  port: 33066
+spring:
+  application:
+    name: Springboot Dubbo Service Consumer
+  profiles:
+    active: @profileActive@
