@@ -36,6 +36,7 @@
         <druid.version>1.0.29</druid.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-collections4.version>4.1</commons-collections4.version>
+        <guava.version>19.0</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -86,6 +87,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,4 +1,4 @@
-package org.ostenant.springboot.learning.examples.service;
+package org.ostenant.springboot.learning.examples;
 
 import java.io.Serializable;
 import java.util.List;
