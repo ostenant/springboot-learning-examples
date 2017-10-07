@@ -1,14 +1,14 @@
 spring:
   datasource:
-    ## Primary Êı¾İÔ´ÅäÖÃ
+    ## Primary æ•°æ®æºé…ç½®
     primary:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/master?useUnicode=true&characterEncoding=utf-8
       username: root
       password: root
-      # ×î´ó»îÔ¾Êı
+      # æœ€å¤§æ´»è·ƒæ•°
       maxActive: 20
-      # ´ò¿ªPSCache£¬²¢ÇÒÖ¸¶¨Ã¿¸öÁ¬½ÓPSCacheµÄ´óĞ¡
+      # æ‰“å¼€PSCacheï¼Œå¹¶ä¸”æŒ‡å®šæ¯ä¸ªè¿æ¥PSCacheçš„å¤§å°
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
       minIdle: 1
@@ -19,15 +19,15 @@ spring:
       testOnBorrow: false
       testOnReturn: false
 
-    ## Secondary Êı¾İÔ´ÅäÖÃ
+    ## Secondary æ•°æ®æºé…ç½®
     secondary:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/slaver?useUnicode=true&characterEncoding=utf-8
       username: root
       password: root
-      # ×î´ó»îÔ¾Êı
+      # æœ€å¤§æ´»è·ƒæ•°
       maxActive: 20
-      # ´ò¿ªPSCache£¬²¢ÇÒÖ¸¶¨Ã¿¸öÁ¬½ÓPSCacheµÄ´óĞ¡
+      # æ‰“å¼€PSCacheï¼Œå¹¶ä¸”æŒ‡å®šæ¯ä¸ªè¿æ¥PSCacheçš„å¤§å°
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
       minIdle: 1

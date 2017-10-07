@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan
+@ComponentScan(basePackages = "org.ostenant.springboot.learning.examples")
 @EnableTransactionManagement
 public class Application {
 
