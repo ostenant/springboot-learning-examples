@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationTests {
-    private static Logger LOGGER = LoggerFactory.getLogger(ApplicationTests.class);
+    private static Logger log = LoggerFactory.getLogger(ApplicationTests.class);
 
     private InstituteMapper instituteMapper;
 
@@ -47,7 +47,7 @@ public class ApplicationTests {
     /**
      * 获取Page对象 - JDK6, 7
      *
-     * @throws Exception
+     * @throws Exception e
      */
     @Test
     public void testDoSelectPageInJDK7() throws Exception {
@@ -58,70 +58,70 @@ public class ApplicationTests {
             }
         });
 
-        LOGGER.info("当前页码为: {}", page.getPageNum());
-        LOGGER.info("每页最大记录数为: {}", page.getPageSize());
-        LOGGER.info("总页数为: {}", page.getPages());
-        LOGGER.info("总记录数为: {}", page.getTotal());
-        LOGGER.info("当前页起始行为: {}", page.getStartRow());
-        LOGGER.info("当前页结束行为: {}", page.getEndRow());
+        log.info("当前页码为: {}", page.getPageNum());
+        log.info("每页最大记录数为: {}", page.getPageSize());
+        log.info("总页数为: {}", page.getPages());
+        log.info("总记录数为: {}", page.getTotal());
+        log.info("当前页起始行为: {}", page.getStartRow());
+        log.info("当前页结束行为: {}", page.getEndRow());
 
-        page.getResult().stream().forEach(item -> LOGGER.info("{}", item));
+        page.getResult().stream().forEach(item -> log.info("{}", item));
     }
 
     /**
      * 获取Page对象 - JDK8
      *
-     * @throws Exception
+     * @throws Exception e
      */
     @Test
     public void testDoSelectPageInJDK8() throws Exception {
         Page<Institute> page = PageHelper.startPage(2, 20)
                 .doSelectPage(() -> instituteMapper.findAll());
 
-        LOGGER.info("当前页码为: {}", page.getPageNum());
-        LOGGER.info("每页最大记录数为: {}", page.getPageSize());
-        LOGGER.info("总页数为: {}", page.getPages());
-        LOGGER.info("总记录数为: {}", page.getTotal());
-        LOGGER.info("当前页起始行为: {}", page.getStartRow());
-        LOGGER.info("当前页结束行为: {}", page.getEndRow());
+        log.info("当前页码为: {}", page.getPageNum());
+        log.info("每页最大记录数为: {}", page.getPageSize());
+        log.info("总页数为: {}", page.getPages());
+        log.info("总记录数为: {}", page.getTotal());
+        log.info("当前页起始行为: {}", page.getStartRow());
+        log.info("当前页结束行为: {}", page.getEndRow());
 
-        page.getResult().stream().forEach(item -> LOGGER.info("{}", item));
+        page.getResult().stream().forEach(item -> log.info("{}", item));
 
     }
 
     /**
      * 获取PageInfo对象 - JDK6, 7
      *
-     * @throws Exception
+     * @throws Exception e
      */
     @Test
     public void testDoSelectPageInfoInJDK7() throws Exception {
-        PageInfo<Institute> pageInfo = PageHelper.startPage(2, 20).doSelectPageInfo(new ISelect() {
+        PageInfo<Institute> pageInfo = PageHelper.startPage(0, 20).doSelectPageInfo(new ISelect() {
             @Override
             public void doSelect() {
                 instituteMapper.findAll();
             }
         });
 
-        LOGGER.info("当前页码为: {}", pageInfo.getPageNum());
-        LOGGER.info("每页最大记录数为: {}", pageInfo.getPageSize());
-        LOGGER.info("总页数为: {}", pageInfo.getPages());
-        LOGGER.info("总记录数为: {}", pageInfo.getTotal());
+        log.info("当前页码为: {}", pageInfo.getPageNum());
+        log.info("每页最大记录数为: {}", pageInfo.getPageSize());
+        log.info("总页数为: {}", pageInfo.getPages());
+        log.info("总记录数为: {}", pageInfo.getTotal());
 
-        LOGGER.info("当前页起始行为: {}", pageInfo.getStartRow());
-        LOGGER.info("当前页结束行为: {}", pageInfo.getEndRow());
+        log.info("当前页起始行为: {}", pageInfo.getStartRow());
+        log.info("当前页结束行为: {}", pageInfo.getEndRow());
 
-        LOGGER.info("是否为第一页: {}", pageInfo.isIsFirstPage());
-        LOGGER.info("是否有上一页: {}", pageInfo.isHasPreviousPage());
-        LOGGER.info("是否有下一页: {}", pageInfo.isHasNextPage());
-        LOGGER.info("是否为最后一页: {}", pageInfo.isIsLastPage());
+        log.info("是否为第一页: {}", pageInfo.isIsFirstPage());
+        log.info("是否有上一页: {}", pageInfo.isHasPreviousPage());
+        log.info("是否有下一页: {}", pageInfo.isHasNextPage());
+        log.info("是否为最后一页: {}", pageInfo.isIsLastPage());
 
-        LOGGER.info("第一页为: {}", pageInfo.getFirstPage());
-        LOGGER.info("上一页为: {}", pageInfo.getPrePage());
-        LOGGER.info("下一页为: {}", pageInfo.getNextPage());
-        LOGGER.info("最后一页为: {}", pageInfo.getLastPage());
+        log.info("第一页为: {}", pageInfo.getFirstPage());
+        log.info("上一页为: {}", pageInfo.getPrePage());
+        log.info("下一页为: {}", pageInfo.getNextPage());
+        log.info("最后一页为: {}", pageInfo.getLastPage());
 
-        pageInfo.getList().stream().forEach(item -> LOGGER.info("{}", item));
+        pageInfo.getList().stream().forEach(item -> log.info("{}", item));
     }
 
     /**
@@ -133,36 +133,36 @@ public class ApplicationTests {
     public void testDoSelectPageInfoJDK8() throws Exception {
         PageInfo<Institute> pageInfo = PageHelper.startPage(2, 20).doSelectPageInfo(() -> instituteMapper.findAll());
 
-        LOGGER.info("当前页码为: {}", pageInfo.getPageNum());
-        LOGGER.info("每页最大记录数为: {}", pageInfo.getPageSize());
-        LOGGER.info("总页数为: {}", pageInfo.getPages());
-        LOGGER.info("总记录数为: {}", pageInfo.getTotal());
+        log.info("当前页码为: {}", pageInfo.getPageNum());
+        log.info("每页最大记录数为: {}", pageInfo.getPageSize());
+        log.info("总页数为: {}", pageInfo.getPages());
+        log.info("总记录数为: {}", pageInfo.getTotal());
 
-        LOGGER.info("当前页起始行为: {}", pageInfo.getStartRow());
-        LOGGER.info("当前页结束行为: {}", pageInfo.getEndRow());
+        log.info("当前页起始行为: {}", pageInfo.getStartRow());
+        log.info("当前页结束行为: {}", pageInfo.getEndRow());
 
-        LOGGER.info("是否为第一页: {}", pageInfo.isIsFirstPage());
-        LOGGER.info("是否有上一页: {}", pageInfo.isHasPreviousPage());
-        LOGGER.info("是否有下一页: {}", pageInfo.isHasNextPage());
-        LOGGER.info("是否为最后一页: {}", pageInfo.isIsLastPage());
+        log.info("是否为第一页: {}", pageInfo.isIsFirstPage());
+        log.info("是否有上一页: {}", pageInfo.isHasPreviousPage());
+        log.info("是否有下一页: {}", pageInfo.isHasNextPage());
+        log.info("是否为最后一页: {}", pageInfo.isIsLastPage());
 
-        LOGGER.info("第一页为: {}", pageInfo.getFirstPage());
-        LOGGER.info("上一页为: {}", pageInfo.getPrePage());
-        LOGGER.info("下一页为: {}", pageInfo.getNextPage());
-        LOGGER.info("最后一页为: {}", pageInfo.getLastPage());
+        log.info("第一页为: {}", pageInfo.getFirstPage());
+        log.info("上一页为: {}", pageInfo.getPrePage());
+        log.info("下一页为: {}", pageInfo.getNextPage());
+        log.info("最后一页为: {}", pageInfo.getLastPage());
 
-        pageInfo.getList().stream().forEach(item -> LOGGER.info("{}", item));
+        pageInfo.getList().stream().forEach(item -> log.info("{}", item));
     }
 
     /**
      * 获取符合条件的记录数 - JDK8
      *
-     * @throws Exception
+     * @throws Exception e
      */
     @Test
     public void testDoCount() throws Exception {
         long totalCount = PageHelper.count(() -> instituteMapper.findAll());
-        LOGGER.info("满足条件的总记录数: {}", totalCount);
+        log.info("满足条件的总记录数: {}", totalCount);
     }
 
 }

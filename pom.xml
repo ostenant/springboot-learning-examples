@@ -22,7 +22,7 @@
         <module>springboot-mybatis-xml</module>
         <module>springboot-mybatis-mixedtype</module>
         <module>springboot-mybatis-pagehelper</module>
-        <module>springboot-mybatis-multi-datasource</module>
+        <module>springboot-multi-datasource</module>
         <module>springboot-restful-api</module>
         <module>springboot-swagger2</module>
         <module>springboot-jpa-hiberbate</module>
