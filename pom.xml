@@ -16,6 +16,7 @@
         <module>springboot-helloworld</module>
         <module>springboot-lombok</module>
         <module>springboot-properties</module>
+        <module>springboot-jdbctemplate</module>
         <module>springboot-mybatis-generator</module>
         <module>springboot-mybatis-generator-plus</module>
         <module>springboot-mybatis-annotation</module>

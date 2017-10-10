@@ -65,13 +65,16 @@
     </select>
 
 
-    <select id="findByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    <select id="findByIds" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from student
-        <foreach close=")" collection="list" item="item" open="(" separator=",">
-            #{item,jdbcType=INTEGER}
+        where id in
+        (
+        <foreach collection="ids" item="id" separator=",">
+            #{id,jdbcType=INTEGER}
         </foreach>
+        )
     </select>
 
 
