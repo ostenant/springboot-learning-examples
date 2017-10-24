@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = Application.BASE_PACKAGE)
+@ComponentScan(basePackages = Application.BASE_PACKAGES)
 @EnableTransactionManagement
 public class Application {
 
-    final static String BASE_PACKAGE = "org.ostenant.springboot.learning.examples";
+    final static String BASE_PACKAGES = "org.ostenant.springboot.learning.examples";
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

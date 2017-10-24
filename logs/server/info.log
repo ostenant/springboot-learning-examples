@@ -1,0 +1,117 @@
+2017-10-24 16:28:25 [INFO] AllSpiInitialization init.
+2017-10-24 16:28:25 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:28:27 [INFO] init compress codec
+2017-10-24 16:28:27 [INFO] add method sign:upda6dab43d78501, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=update, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:28:27 [INFO] add method sign:save3c074cba6a5f, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=save, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:28:27 [INFO] add method sign:finda1407499bda5, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findAll, paramtersDesc=void, version=1.0]
+2017-10-24 16:28:27 [INFO] add method sign:dele867c054a91c3, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=deleteById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:28:27 [INFO] add method sign:find3c7e92767782, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:28:27 [INFO] RequestRouter addProvider: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group all_public_method_count=5
+2017-10-24 16:28:27 [INFO] ShutdownHook is initialized
+2017-10-24 16:28:27 [INFO] add resource class com.weibo.api.motan.transport.support.HeartbeatClientEndpointManager$2 to list
+2017-10-24 16:28:27 [INFO] NettyEndpointFactory create share_channel server: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:28:27 [INFO] NettyServer ServerChannel start Open: url=motan://192.168.56.1:8002/?group=service1-motan-group
+2017-10-24 16:28:27 [INFO] add resource class com.weibo.api.motan.util.StatsUtil$2 to list
+2017-10-24 16:28:27 [INFO] NettyServer ServerChannel finish Open: url=motan://192.168.56.1:8002/?group=service1-motan-group
+2017-10-24 16:28:27 [INFO] DefaultRpcExporter node init Success: [DefaultRpcExporter] url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:28:27 [INFO] DefaultRpcProtocol export Success: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:28:28 [INFO] ConsulEcwidClient init finish. client host:192.168.127.131, port:8500
+2017-10-24 16:28:28 [INFO] add resource class com.weibo.api.motan.registry.support.FailbackRegistry$1 to list
+2017-10-24 16:28:28 [INFO] CommandFailbackRegistry init. url: consul://192.168.127.131:8500/com.weibo.api.motan.registry.RegistryService?group=default_rpc
+2017-10-24 16:28:28 [INFO] add resource class com.weibo.api.motan.registry.consul.ConsulRegistry to list
+2017-10-24 16:28:28 [INFO] ConsulRegistry init finish.
+2017-10-24 16:28:28 [INFO] [ConsulRegistry] Url (motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group) will register to Registry [consul://192.168.127.131:8500/default_rpc/com.weibo.api.motan.registry.RegistryService/1.0/service]
+2017-10-24 16:29:09 [INFO] AllSpiInitialization init.
+2017-10-24 16:29:09 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:29:11 [INFO] init compress codec
+2017-10-24 16:29:11 [INFO] add method sign:upda6dab43d78501, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=update, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:29:11 [INFO] add method sign:save3c074cba6a5f, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=save, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:29:11 [INFO] add method sign:dele867c054a91c3, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=deleteById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:29:11 [INFO] add method sign:finda1407499bda5, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findAll, paramtersDesc=void, version=1.0]
+2017-10-24 16:29:11 [INFO] add method sign:find3c7e92767782, methodinfo:MethodInfo [group=service1-motan-group, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:29:11 [INFO] RequestRouter addProvider: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group all_public_method_count=5
+2017-10-24 16:29:11 [INFO] ShutdownHook is initialized
+2017-10-24 16:29:11 [INFO] add resource class com.weibo.api.motan.transport.support.HeartbeatClientEndpointManager$2 to list
+2017-10-24 16:29:11 [INFO] NettyEndpointFactory create share_channel server: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:29:11 [INFO] NettyServer ServerChannel start Open: url=motan://192.168.56.1:8002/?group=service1-motan-group
+2017-10-24 16:29:11 [INFO] add resource class com.weibo.api.motan.util.StatsUtil$2 to list
+2017-10-24 16:29:11 [INFO] NettyServer ServerChannel finish Open: url=motan://192.168.56.1:8002/?group=service1-motan-group
+2017-10-24 16:29:11 [INFO] DefaultRpcExporter node init Success: [DefaultRpcExporter] url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:29:11 [INFO] DefaultRpcProtocol export Success: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group
+2017-10-24 16:29:12 [INFO] ConsulEcwidClient init finish. client host:192.168.127.131, port:8500
+2017-10-24 16:29:12 [INFO] add resource class com.weibo.api.motan.registry.support.FailbackRegistry$1 to list
+2017-10-24 16:29:12 [INFO] CommandFailbackRegistry init. url: consul://192.168.127.131:8500/com.weibo.api.motan.registry.RegistryService?group=default_rpc
+2017-10-24 16:29:12 [INFO] add resource class com.weibo.api.motan.registry.consul.ConsulRegistry to list
+2017-10-24 16:29:12 [INFO] ConsulRegistry init finish.
+2017-10-24 16:29:12 [INFO] [ConsulRegistry] Url (motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=service1-motan-group) will register to Registry [consul://192.168.127.131:8500/default_rpc/com.weibo.api.motan.registry.RegistryService/1.0/service]
+2017-10-24 16:51:18 [INFO] AllSpiInitialization init.
+2017-10-24 16:51:18 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:51:21 [INFO] init compress codec
+2017-10-24 16:51:21 [INFO] add method sign:updaaa5dee9b1cbd, methodinfo:MethodInfo [group=group1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=update, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:51:21 [INFO] add method sign:save938fc19fd73a, methodinfo:MethodInfo [group=group1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=save, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:51:21 [INFO] add method sign:find86231745bf07, methodinfo:MethodInfo [group=group1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findAll, paramtersDesc=void, version=1.0]
+2017-10-24 16:51:21 [INFO] add method sign:dele4bc55ed1c268, methodinfo:MethodInfo [group=group1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=deleteById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:51:21 [INFO] add method sign:findc9057c89de01, methodinfo:MethodInfo [group=group1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:51:21 [INFO] RequestRouter addProvider: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=group1 all_public_method_count=5
+2017-10-24 16:51:21 [INFO] ShutdownHook is initialized
+2017-10-24 16:51:21 [INFO] add resource class com.weibo.api.motan.transport.support.HeartbeatClientEndpointManager$2 to list
+2017-10-24 16:51:21 [INFO] NettyEndpointFactory create share_channel server: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=group1
+2017-10-24 16:51:21 [INFO] NettyServer ServerChannel start Open: url=motan://192.168.56.1:8002/?group=group1
+2017-10-24 16:51:21 [INFO] add resource class com.weibo.api.motan.util.StatsUtil$2 to list
+2017-10-24 16:51:21 [INFO] NettyServer ServerChannel finish Open: url=motan://192.168.56.1:8002/?group=group1
+2017-10-24 16:51:21 [INFO] DefaultRpcExporter node init Success: [DefaultRpcExporter] url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=group1
+2017-10-24 16:51:21 [INFO] DefaultRpcProtocol export Success: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=group1
+2017-10-24 16:51:22 [INFO] ConsulEcwidClient init finish. client host:192.168.127.131, port:8500
+2017-10-24 16:51:22 [INFO] add resource class com.weibo.api.motan.registry.support.FailbackRegistry$1 to list
+2017-10-24 16:51:22 [INFO] CommandFailbackRegistry init. url: consul://192.168.127.131:8500/com.weibo.api.motan.registry.RegistryService?group=default_rpc
+2017-10-24 16:51:22 [INFO] add resource class com.weibo.api.motan.registry.consul.ConsulRegistry to list
+2017-10-24 16:51:22 [INFO] ConsulRegistry init finish.
+2017-10-24 16:51:22 [INFO] [ConsulRegistry] Url (motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=group1) will register to Registry [consul://192.168.127.131:8500/default_rpc/com.weibo.api.motan.registry.RegistryService/1.0/service]
+2017-10-24 16:54:00 [INFO] AllSpiInitialization init.
+2017-10-24 16:54:00 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:54:03 [INFO] init compress codec
+2017-10-24 16:54:03 [INFO] add method sign:upda12dab34aad1e, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=update, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:54:03 [INFO] add method sign:saved54cfbff0cea, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=save, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:54:03 [INFO] add method sign:findaeb2622aa329, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findAll, paramtersDesc=void, version=1.0]
+2017-10-24 16:54:03 [INFO] add method sign:dele67ac08e425f1, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=deleteById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:54:03 [INFO] add method sign:find644e3500c5bc, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:54:03 [INFO] RequestRouter addProvider: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1 all_public_method_count=5
+2017-10-24 16:54:03 [INFO] ShutdownHook is initialized
+2017-10-24 16:54:03 [INFO] add resource class com.weibo.api.motan.transport.support.HeartbeatClientEndpointManager$2 to list
+2017-10-24 16:54:03 [INFO] NettyEndpointFactory create share_channel server: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:54:03 [INFO] NettyServer ServerChannel start Open: url=motan://192.168.56.1:8002/?group=g1
+2017-10-24 16:54:03 [INFO] add resource class com.weibo.api.motan.util.StatsUtil$2 to list
+2017-10-24 16:54:03 [INFO] NettyServer ServerChannel finish Open: url=motan://192.168.56.1:8002/?group=g1
+2017-10-24 16:54:03 [INFO] DefaultRpcExporter node init Success: [DefaultRpcExporter] url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:54:03 [INFO] DefaultRpcProtocol export Success: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:54:04 [INFO] ConsulEcwidClient init finish. client host:192.168.127.131, port:8500
+2017-10-24 16:54:04 [INFO] add resource class com.weibo.api.motan.registry.support.FailbackRegistry$1 to list
+2017-10-24 16:54:04 [INFO] CommandFailbackRegistry init. url: consul://192.168.127.131:8500/com.weibo.api.motan.registry.RegistryService?group=default_rpc
+2017-10-24 16:54:04 [INFO] add resource class com.weibo.api.motan.registry.consul.ConsulRegistry to list
+2017-10-24 16:54:04 [INFO] ConsulRegistry init finish.
+2017-10-24 16:54:04 [INFO] [ConsulRegistry] Url (motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1) will register to Registry [consul://192.168.127.131:8500/default_rpc/com.weibo.api.motan.registry.RegistryService/1.0/service]
+2017-10-24 16:57:07 [INFO] AllSpiInitialization init.
+2017-10-24 16:57:07 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:58:30 [INFO] AllSpiInitialization init.
+2017-10-24 16:58:30 [INFO] AllSpiInitialization init finish.
+2017-10-24 16:58:30 [INFO] init compress codec
+2017-10-24 16:58:30 [INFO] add method sign:upda12dab34aad1e, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=update, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:58:30 [INFO] add method sign:saved54cfbff0cea, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=save, paramtersDesc=java.lang.Object, version=1.0]
+2017-10-24 16:58:30 [INFO] add method sign:findaeb2622aa329, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findAll, paramtersDesc=void, version=1.0]
+2017-10-24 16:58:30 [INFO] add method sign:find644e3500c5bc, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=findById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:58:30 [INFO] add method sign:dele67ac08e425f1, methodinfo:MethodInfo [group=g1, interfaceName=org.ostenant.springboot.learning.examples.service.department.IDepartmentService, methodName=deleteById, paramtersDesc=java.io.Serializable, version=1.0]
+2017-10-24 16:58:30 [INFO] RequestRouter addProvider: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1 all_public_method_count=5
+2017-10-24 16:58:30 [INFO] ShutdownHook is initialized
+2017-10-24 16:58:30 [INFO] add resource class com.weibo.api.motan.transport.support.HeartbeatClientEndpointManager$2 to list
+2017-10-24 16:58:30 [INFO] NettyEndpointFactory create share_channel server: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:58:30 [INFO] NettyServer ServerChannel start Open: url=motan://192.168.56.1:8002/?group=g1
+2017-10-24 16:58:31 [INFO] add resource class com.weibo.api.motan.util.StatsUtil$2 to list
+2017-10-24 16:58:31 [INFO] NettyServer ServerChannel finish Open: url=motan://192.168.56.1:8002/?group=g1
+2017-10-24 16:58:31 [INFO] DefaultRpcExporter node init Success: [DefaultRpcExporter] url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:58:31 [INFO] DefaultRpcProtocol export Success: url=motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1
+2017-10-24 16:58:31 [INFO] ConsulEcwidClient init finish. client host:192.168.127.131, port:8500
+2017-10-24 16:58:31 [INFO] add resource class com.weibo.api.motan.registry.support.FailbackRegistry$1 to list
+2017-10-24 16:58:31 [INFO] CommandFailbackRegistry init. url: consul://192.168.127.131:8500/com.weibo.api.motan.registry.RegistryService?group=default_rpc
+2017-10-24 16:58:31 [INFO] add resource class com.weibo.api.motan.registry.consul.ConsulRegistry to list
+2017-10-24 16:58:31 [INFO] ConsulRegistry init finish.
+2017-10-24 16:58:31 [INFO] [ConsulRegistry] Url (motan://192.168.56.1:8002/org.ostenant.springboot.learning.examples.service.department.IDepartmentService?group=g1) will register to Registry [consul://192.168.127.131:8500/default_rpc/com.weibo.api.motan.registry.RegistryService/1.0/service]

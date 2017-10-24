@@ -28,6 +28,8 @@
         <module>springboot-swagger2</module>
         <module>springboot-jpa-hiberbate</module>
         <module>springboot-rpc-dubbox</module>
+        <module>springboot-rpc-motan</module>
+        <module>springboot-guava</module>
     </modules>
 
 </project>
