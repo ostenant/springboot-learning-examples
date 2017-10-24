@@ -1,6 +1,7 @@
-spring:
-  profiles:
-    active: default
+## 日志打印
+logging:
+  level:
+    root: DEBUG
 
 server:
   port: 80

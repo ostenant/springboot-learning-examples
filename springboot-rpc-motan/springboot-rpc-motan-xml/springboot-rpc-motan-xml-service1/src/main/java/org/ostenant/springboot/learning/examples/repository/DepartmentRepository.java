@@ -14,12 +14,9 @@ import java.util.List;
 
 public class DepartmentRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public DepartmentRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
+
 
     public int deleteById(String id) {
         final String deleteSQL = "DELETE FROM department WHERE id = ?";
