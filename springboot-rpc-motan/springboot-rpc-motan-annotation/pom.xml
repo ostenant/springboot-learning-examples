@@ -12,6 +12,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>springboot-rpc-motan-annotation-api</module>
+        <module>springboot-rpc-motan-annotation-client</module>
+        <module>springboot-rpc-motan-annotation-service1</module>
+        <module>springboot-rpc-motan-annotation-service2</module>
     </modules>
 
     <properties>

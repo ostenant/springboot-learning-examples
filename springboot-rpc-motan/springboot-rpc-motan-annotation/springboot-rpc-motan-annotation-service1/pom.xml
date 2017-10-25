@@ -3,24 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-rpc-motan-xml</artifactId>
+        <artifactId>springboot-rpc-motan-annotation</artifactId>
         <groupId>org.ostenant.springboot.learning.examples</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-rpc-motan-xml-service2</artifactId>
+    <artifactId>springboot-rpc-motan-annotation-service1</artifactId>
     <packaging>jar</packaging>
 
     <properties>
-        <springboot-rpc-motan-xml-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-xml-api.version>
+        <springboot-rpc-motan-annotation-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-annotation-api.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <artifactId>springboot-rpc-motan-xml-api</artifactId>
+            <artifactId>springboot-rpc-motan-annotation-api</artifactId>
             <groupId>org.ostenant.springboot.learning.examples</groupId>
-            <version>${springboot-rpc-motan-xml-api.version}</version>
+            <version>${springboot-rpc-motan-annotation-api.version}</version>
         </dependency>
 
         <dependency>
@@ -68,7 +68,7 @@
     </dependencies>
 
     <build>
-        <finalName>springboot-rpc-motan-xml-service2</finalName>
+        <finalName>springboot-rpc-motan-annotation-service1</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
@@ -124,5 +124,6 @@
         </plugins>
 
     </build>
+
 
 </project>

@@ -2,7 +2,7 @@ spring:
   datasource:
     ## Primary 数据源配置
    driver-class-name: com.mysql.jdbc.Driver
-   url: jdbc:mysql://localhost:3306/db2_course?useUnicode=true&characterEncoding=utf-8
+   url: jdbc:mysql://localhost:3306/db1_department?useUnicode=true&characterEncoding=utf-8
    username: root
    password: root
    # 最大活跃数
@@ -19,4 +19,4 @@ spring:
    testOnReturn: false
 
 server:
-  port: 10002
+  port: 10001

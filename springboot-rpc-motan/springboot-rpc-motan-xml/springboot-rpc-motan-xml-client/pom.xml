@@ -48,7 +48,7 @@
     </dependencies>
 
     <build>
-        <finalName>springboot-rpc-motan-xml-service1</finalName>
+        <finalName>springboot-rpc-motan-xml-client</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
