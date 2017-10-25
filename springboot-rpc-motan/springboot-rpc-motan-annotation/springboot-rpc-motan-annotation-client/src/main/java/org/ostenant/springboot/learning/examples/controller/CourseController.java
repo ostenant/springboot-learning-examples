@@ -1,8 +1,8 @@
 package org.ostenant.springboot.learning.examples.controller;
 
+import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
 import org.ostenant.springboot.learning.examples.model.course.Course;
 import org.ostenant.springboot.learning.examples.service.course.ICourseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +13,8 @@ import java.util.List;
 @RestController
 public class CourseController implements BasicController<Course, String> {
 
-    private final ICourseService courseService;
-
-    @Autowired
-    public CourseController(ICourseService courseService) {
-        this.courseService = courseService;
-    }
+    @MotanReferer(basicReferer = "motanBasicReferer2")
+    private ICourseService courseService;
 
     @RequestMapping(value = "/api/course/{id}", method = RequestMethod.DELETE)
     public int deleteById(@PathVariable("id") String id) {

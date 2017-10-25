@@ -1,5 +1,6 @@
 package org.ostenant.springboot.learning.examples.service;
 
+import com.weibo.api.motan.config.springsupport.annotation.MotanService;
 import org.ostenant.springboot.learning.examples.model.course.Course;
 import org.ostenant.springboot.learning.examples.repository.CourseRepository;
 import org.ostenant.springboot.learning.examples.service.course.ICourseService;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@MotanService
 @Transactional
 public class CourseServiceImpl implements ICourseService {
 

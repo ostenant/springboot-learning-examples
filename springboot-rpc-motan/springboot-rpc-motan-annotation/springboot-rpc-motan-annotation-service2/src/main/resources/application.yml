@@ -24,6 +24,6 @@ logging:
 
 ## Server端口号
 server:
-  port: 10002
+  port: 20002
 
 

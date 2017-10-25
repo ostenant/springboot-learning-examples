@@ -19,4 +19,4 @@ spring:
    testOnReturn: false
 
 server:
-  port: 10001
+  port: 20001

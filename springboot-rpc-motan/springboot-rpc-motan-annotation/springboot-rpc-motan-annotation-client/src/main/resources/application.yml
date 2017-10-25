@@ -4,4 +4,4 @@ logging:
     root: DEBUG
 
 server:
-  port: 80
+  port: 9000

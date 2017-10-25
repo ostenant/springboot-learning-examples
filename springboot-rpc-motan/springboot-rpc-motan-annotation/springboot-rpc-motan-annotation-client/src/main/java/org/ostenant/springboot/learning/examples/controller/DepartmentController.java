@@ -1,8 +1,8 @@
 package org.ostenant.springboot.learning.examples.controller;
 
+import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
 import org.ostenant.springboot.learning.examples.model.department.Department;
 import org.ostenant.springboot.learning.examples.service.department.IDepartmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +13,8 @@ import java.util.List;
 @RestController
 public class DepartmentController implements BasicController<Department, String> {
 
-    private final IDepartmentService departmentService;
-
-    @Autowired
-    public DepartmentController(IDepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
+    @MotanReferer(basicReferer = "motanBasicReferer1")
+    private IDepartmentService departmentService;
 
     @RequestMapping(value = "/api/department/{id}", method = RequestMethod.DELETE)
     public int deleteById(@PathVariable("id") String id) {
