@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource(locations = "classpath:motan-server-local.xml")
+@ImportResource(locations = "classpath:motan-server-zookeeper.xml")
 @Slf4j
 public class Application {
 

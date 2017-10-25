@@ -30,6 +30,7 @@
         <module>springboot-rpc-dubbox</module>
         <module>springboot-rpc-motan</module>
         <module>springboot-guava</module>
+        <module>springcloud-consul</module>
     </modules>
 
 </project>

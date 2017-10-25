@@ -44,6 +44,21 @@
                 <artifactId>motan-registry-consul</artifactId>
                 <version>${motan.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.weibo</groupId>
+                <artifactId>motan-registry-zookeeper</artifactId>
+                <version>${motan.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.weibo</groupId>
+                <artifactId>motan-protocol-yar</artifactId>
+                <version>${motan.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.weibo</groupId>
+                <artifactId>motan-protocol-restful</artifactId>
+                <version>${motan.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -64,6 +79,18 @@
         <dependency>
             <groupId>com.weibo</groupId>
             <artifactId>motan-registry-consul</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-registry-zookeeper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-protocol-yar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-protocol-restful</artifactId>
         </dependency>
     </dependencies>
 

@@ -6,8 +6,9 @@
         http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
 
     <!-- 服务注册中心配置Consul -->
-    <motan:registry regProtocol="direct" name="local_registry1" address="localhost:50010"/>
-    <motan:registry regProtocol="direct" name="local_registry2" address="localhost:50020"/>
+    <motan:registry regProtocol="consul"
+                    name="registry"
+                    address="localhost:8500"/>
 
 
     <!-- motan协议配置 -->
@@ -27,7 +28,7 @@
                         module="m1"
                         application="motan-service"
                         protocol="motan"
-                        registry="local_registry1"
+                        registry="registry"
                         id="motanBasicReferer1"
                         throwException="false"
                         check="true"/>
@@ -51,7 +52,7 @@
                         module="m2"
                         application="motan-service"
                         protocol="motan"
-                        registry="local_registry2"
+                        registry="registry"
                         id="motanBasicReferer2"
                         throwException="false"
                         check="true"/>

@@ -6,7 +6,9 @@
         http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
 
     <!-- 服务注册中心配置Consul -->
-    <motan:registry regProtocol="local" name="registry"/>
+    <motan:registry regProtocol="consul"
+                    name="registry"
+                    address="localhost:8500"/>
 
 
     <!-- 协议配置 为防止多个业务配置冲突 推荐使用id表示具体协议 -->
