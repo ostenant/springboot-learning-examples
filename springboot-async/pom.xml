@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.ostenant.springboot.learning.examples</groupId>
-	<artifactId>springboot</artifactId>
+	<artifactId>springboot-async</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot</name>
+	<name>springboot-async</name>
 	<description>Springboot async project for Spring Boot</description>
 
 	<parent>

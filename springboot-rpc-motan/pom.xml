@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>springboot-rpc-motan-xml</module>
+        <module>springboot-rpc-motan-annotation</module>
     </modules>
     <packaging>pom</packaging>
 
