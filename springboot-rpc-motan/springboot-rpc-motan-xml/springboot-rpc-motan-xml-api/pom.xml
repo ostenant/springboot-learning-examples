@@ -12,16 +12,5 @@
 
     <artifactId>springboot-rpc-motan-xml-api</artifactId>
 
-    <dependencies>
-        <dependency>
-            <artifactId>slf4j-api</artifactId>
-            <groupId>org.slf4j</groupId>
-            <version>1.7.11</version>
-        </dependency>
-        <dependency>
-            <artifactId>slf4j-log4j12</artifactId>
-            <groupId>org.slf4j</groupId>
-            <version>1.7.11</version>
-        </dependency>
-    </dependencies>
+
 </project>

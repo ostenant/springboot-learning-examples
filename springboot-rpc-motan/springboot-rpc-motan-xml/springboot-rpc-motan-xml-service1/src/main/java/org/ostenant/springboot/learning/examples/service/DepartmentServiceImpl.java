@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 public class DepartmentServiceImpl implements IDepartmentService {
 
     @Autowired

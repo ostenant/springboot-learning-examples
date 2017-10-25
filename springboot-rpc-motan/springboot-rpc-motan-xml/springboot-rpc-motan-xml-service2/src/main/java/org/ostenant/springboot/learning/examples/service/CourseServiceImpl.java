@@ -22,7 +22,7 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public int deleteById(String id) {
-        courseRepository.delete(id);
+        courseRepository.deleteById(id);
         return 0;
     }
 
@@ -43,8 +43,8 @@ public class CourseServiceImpl implements ICourseService {
 
             course.setId(c.getId());
             course.setName(c.getName());
-            course.setDescription(c.getDescription());
             course.setTotalCourse(c.getTotalCourse());
+            course.setDescription(c.getDescription());
             course.setLessonPeriod(c.getLessonPeriod());
 
             courses.add(course);
@@ -56,7 +56,7 @@ public class CourseServiceImpl implements ICourseService {
     @Override
     @Transactional(readOnly = true)
     public Course findById(String id) {
-        Course c = courseRepository.findOne(id);
+        Course c = courseRepository.findById(id);
         Course course = new Course();
 
         course.setId(c.getId());

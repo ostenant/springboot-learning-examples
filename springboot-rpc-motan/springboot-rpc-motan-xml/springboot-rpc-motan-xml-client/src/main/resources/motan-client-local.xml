@@ -9,7 +9,8 @@
     <!--<motan:registry regProtocol="consul"
                     name="registry"
                     address="192.168.127.131:8500"/>-->
-    <motan:registry regProtocol="direct" name="registry" address="localhost:50010"/>
+    <motan:registry regProtocol="direct" name="local_registry1" address="localhost:50010"/>
+    <motan:registry regProtocol="direct" name="local_registry2" address="localhost:50020"/>
 
 
     <!-- motan协议配置 -->
@@ -20,7 +21,7 @@
                     maxClientConnection="10"
                     minClientConnection="2"/>
 
-
+    <!-- Department服务配置开始 -->
     <!-- 通用referer基础配置 -->
     <motan:basicReferer requestTimeout="200"
                         accessLog="false"
@@ -29,18 +30,42 @@
                         module="m1"
                         application="motan-service"
                         protocol="motan"
-                        registry="registry"
-                        id="motanBasicReferer"
+                        registry="local_registry1"
+                        id="motanBasicReferer1"
                         throwException="false"
                         check="true"/>
 
 
     <!-- 具体referer配置。使用方通过beanid使用服务接口类 -->
-    <motan:referer id="motanReferer"
+    <motan:referer id="motanReferer1"
                    interface="org.ostenant.springboot.learning.examples.service.department.IDepartmentService"
                    connectTimeout="300"
                    requestTimeout="300"
-                   basicReferer="motanBasicReferer"/>
+                   basicReferer="motanBasicReferer1"/>
+    <!-- Department服务配置结束 -->
+
+
+    <!-- Course服务配置开始 -->
+    <!-- 通用referer基础配置 -->
+    <motan:basicReferer requestTimeout="200"
+                        accessLog="false"
+                        retries="3"
+                        group="g2"
+                        module="m2"
+                        application="motan-service"
+                        protocol="motan"
+                        registry="local_registry2"
+                        id="motanBasicReferer2"
+                        throwException="false"
+                        check="true"/>
+
+    <!-- 具体referer配置。使用方通过beanid使用服务接口类 -->
+    <motan:referer id="motanReferer2"
+                   interface="org.ostenant.springboot.learning.examples.service.course.ICourseService"
+                   connectTimeout="300"
+                   requestTimeout="300"
+                   basicReferer="motanBasicReferer2"/>
+    <!-- Course服务配置结束 -->
 
 
 </beans>
