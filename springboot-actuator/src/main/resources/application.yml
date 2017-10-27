@@ -1,3 +1,6 @@
+endpoints:
+  actuator:
+    sensitive: false
 management:
   security:
     enabled: false

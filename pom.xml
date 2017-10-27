@@ -26,11 +26,10 @@
         <module>springboot-multi-datasource</module>
         <module>springboot-restful-api</module>
         <module>springboot-swagger2</module>
-        <module>springboot-jpa-hiberbate</module>
+        <module>springboot-jpa-hibernate</module>
         <module>springboot-rpc-dubbox</module>
         <module>springboot-rpc-motan</module>
         <module>springboot-guava</module>
-        <module>springcloud-consul</module>
     </modules>
 
 </project>
