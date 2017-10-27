@@ -3,39 +3,47 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-rpc-motan-annotation</artifactId>
+        <artifactId>springboot-rpc-motan-cloud</artifactId>
         <groupId>org.ostenant.springboot.learning.examples</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springboot-rpc-motan-cloud-service1</artifactId>
     <packaging>jar</packaging>
 
-    <artifactId>springboot-rpc-motan-annotation-client</artifactId>
-
     <properties>
-        <springboot-rpc-motan-annotation-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-annotation-api.version>
+        <springboot-rpc-motan-cloud-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-cloud-api.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <artifactId>springboot-rpc-motan-annotation-api</artifactId>
+            <artifactId>springboot-rpc-motan-cloud-api</artifactId>
             <groupId>org.ostenant.springboot.learning.examples</groupId>
-            <version>${springboot-rpc-motan-annotation-api.version}</version>
+            <version>${springboot-rpc-motan-cloud-api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.26</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
                     <artifactId>log4j-over-slf4j</artifactId>
@@ -47,10 +55,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>springboot-rpc-motan-annotation-client</finalName>
+        <finalName>springboot-rpc-motan-cloud-service1</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
@@ -104,6 +122,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

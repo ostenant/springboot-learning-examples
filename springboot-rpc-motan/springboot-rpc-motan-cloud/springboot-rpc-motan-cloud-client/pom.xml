@@ -3,24 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>springboot-rpc-motan-annotation</artifactId>
+        <artifactId>springboot-rpc-motan-cloud</artifactId>
         <groupId>org.ostenant.springboot.learning.examples</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springboot-rpc-motan-cloud-client</artifactId>
     <packaging>jar</packaging>
 
-    <artifactId>springboot-rpc-motan-annotation-client</artifactId>
-
     <properties>
-        <springboot-rpc-motan-annotation-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-annotation-api.version>
+        <springboot-rpc-motan-cloud-api.version>0.0.1-SNAPSHOT</springboot-rpc-motan-cloud-api.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <artifactId>springboot-rpc-motan-annotation-api</artifactId>
+            <artifactId>springboot-rpc-motan-cloud-api</artifactId>
             <groupId>org.ostenant.springboot.learning.examples</groupId>
-            <version>${springboot-rpc-motan-annotation-api.version}</version>
+            <version>${springboot-rpc-motan-cloud-api.version}</version>
         </dependency>
 
         <dependency>
@@ -50,7 +50,7 @@
     </dependencies>
 
     <build>
-        <finalName>springboot-rpc-motan-annotation-client</finalName>
+        <finalName>springboot-rpc-motan-cloud-client</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
